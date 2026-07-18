@@ -553,9 +553,9 @@
     const imie=document.getElementById('imie'), email=document.getElementById('email'), jed=document.getElementById('jednostka'), jedInna=document.getElementById('jedInna');
     if(!imie.value.trim()) bad(imie);
     const em=email.value.trim().toLowerCase();
-    if(!em || !/^[^\s@]+@[^\s@]+$/.test(em) || !/@([a-z0-9-]+\.)*uw\.edu\.pl$/.test(em)){
+    if(!em || !/^[^\s@]+@([a-z0-9-]+\.)*uw\.edu\.pl$/.test(em)){
       bad(email);
-      if(em && !/@([a-z0-9-]+\.)*uw\.edu\.pl$/.test(em)) showErr(t('Podaj służbowy adres uczelniany')+' (…@uw.edu.pl)');
+      if(em) showErr(t('Podaj służbowy adres uczelniany')+' (…@uw.edu.pl)');
     }
     if(!jed.value) bad(jed);
     else if(jed.value==='Inna jednostka' && !jedInna.value.trim()) bad(jedInna);
@@ -679,7 +679,7 @@
       });
       const res=await r.json();
       if(res && res.ok){
-        sent++; sentTypes.add(current); collapseId(); updCnt(); hideAll();
+        sent++; sentTypes.add(current); clearBlock(current); collapseId(); updCnt(); hideAll();
         document.querySelector('#mainCard .h').style.display='none';
         document.querySelector('#mainCard .types').style.display='none';
         document.getElementById('done').classList.add('on');
@@ -724,7 +724,6 @@
     document.getElementById('done').classList.remove('on');
     document.getElementById('doneWarn').style.display='none';
     finish._armed=false;
-    clearBlock(current);
     const h=document.querySelector('#mainCard .h');
     h.style.display='block'; h.textContent=t(HDR);
     document.querySelector('#mainCard .types').style.display='grid';
