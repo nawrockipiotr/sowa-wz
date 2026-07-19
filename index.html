@@ -22,19 +22,19 @@
   a{color:var(--blue)}a:hover{color:var(--blue-d)}
   .topbar{background:var(--ink);color:#fff;padding:11px 22px;display:flex;align-items:center;gap:12px}
   .topbar .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);display:grid;place-items:center;flex:none}
-  .topbar b{font-weight:600;font-size:15px;letter-spacing:.2px}
-  .topbar .sub{color:#9DB6DC;font-size:12.5px;margin-left:auto}
+  .topbar b{font-weight:600;font-size:17px;letter-spacing:.2px}
+  .topbar .sub{color:#9DB6DC;font-size:14.5px;margin-left:auto}
   .wrap{max-width:760px;margin:26px auto 60px;padding:0 18px}
   .lead{margin:0 0 20px}
-  .lead h1{font-size:22px;margin:0 0 6px;font-weight:700}
-  .lead p{margin:0;color:var(--g2);font-size:14px}
-  .lead .term{display:inline-block;margin-top:10px;background:var(--amber-bg);color:var(--amber);font-size:12.5px;font-weight:500;padding:4px 10px;border-radius:999px}
+  .lead h1{font-size:25px;margin:0 0 6px;font-weight:700}
+  .lead p{margin:0;color:var(--g2);font-size:16px}
+  .lead .term{display:inline-block;margin-top:10px;background:var(--amber-bg);color:var(--amber);font-size:14.5px;font-weight:500;padding:4px 10px;border-radius:999px}
   .card{background:#fff;border:1px solid var(--bd2);border-radius:var(--r);padding:20px;margin-bottom:16px}
-  .card > .h{font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--g1);margin:0 0 14px}
-  label{display:block;font-size:13.5px;font-weight:500;color:var(--g3);margin:0 0 5px}
+  .card > .h{font-size:14px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--g1);margin:0 0 14px}
+  label{display:block;font-size:15.5px;font-weight:500;color:var(--g3);margin:0 0 5px}
   label .req{color:var(--red);margin-left:2px}
-  label .hint{display:block;font-weight:400;color:var(--g1);font-size:12.5px;margin-top:1px}
-  input[type=text],input[type=email],input[type=number],select,textarea{width:100%;font-family:inherit;font-size:14px;color:var(--ink);padding:9px 11px;border:1px solid var(--bd);border-radius:var(--r);background:#fff;outline:none}
+  label .hint{display:block;font-weight:400;color:var(--g1);font-size:14.5px;margin-top:1px}
+  input[type=text],input[type=email],input[type=number],select,textarea{width:100%;font-family:inherit;font-size:16px;color:var(--ink);padding:9px 11px;border:1px solid var(--bd);border-radius:var(--r);background:#fff;outline:none}
   input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--bg3)}
   textarea{min-height:74px;resize:vertical}
   .invalid{border-color:var(--red) !important;box-shadow:0 0 0 3px var(--red-bg) !important}
@@ -51,13 +51,13 @@
   select:hover{border-color:var(--blue) !important;box-shadow:0 0 0 3px rgba(45,91,166,0.14)}
   :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
   [data-tip]{position:relative}
-  [data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:11.5px;font-weight:500;line-height:1.4;padding:6px 10px;border-radius:6px;width:max-content;max-width:240px;white-space:normal;text-align:left;z-index:30;pointer-events:none}
+  [data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13.5px;font-weight:500;line-height:1.4;padding:6px 10px;border-radius:6px;width:max-content;max-width:240px;white-space:normal;text-align:left;z-index:30;pointer-events:none}
   .logo .sowa-powieka{opacity:0}
   .logo.mruga .sowa-powieka{animation:sowaMrug 1.1s ease-in-out}
   @keyframes sowaMrug{0%,100%{opacity:0}15%,45%{opacity:1}60%{opacity:0}70%,85%{opacity:1}}
   @keyframes hooPop{0%{opacity:0;transform:translateY(6px) scale(0.7)}12%{opacity:1;transform:none}78%{opacity:1;transform:none}100%{opacity:0;transform:none}}
 
-  #idSummary{display:none;align-items:center;gap:10px;font-size:13.5px;color:var(--g2)}
+  #idSummary{display:none;align-items:center;gap:10px;font-size:15.5px;color:var(--g2)}
   #idSummary b{color:var(--ink);font-weight:600}
   #idSummary button{margin-left:auto}
 
@@ -66,25 +66,25 @@
   .type{border:1.5px solid var(--bd);border-radius:var(--r);padding:13px 14px;cursor:pointer;background:#fff;transition:border-color .12s,background .12s;text-align:left}
   .type:hover{border-color:#9DB6DC;background:var(--bg2)}
   .type.on{border-color:var(--blue);background:var(--bg3)}
-  .type .t{font-size:14.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px}
+  .type .t{font-size:16.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px}
   .type .dot{width:12px;height:12px;border-radius:999px;background:var(--bd);flex:none}
   .type.on .dot{background:var(--blue)}
   .type.pend .dot{background:#E8B33A;box-shadow:0 0 0 3px var(--amber-bg)}
   .type.sent .dot{background:var(--green);box-shadow:0 0 0 3px var(--green-bg)}
-  .type .d{font-size:12.5px;color:var(--g1);margin-top:4px}
+  .type .d{font-size:14.5px;color:var(--g1);margin-top:4px}
 
   .block{display:none}
   .block.on{display:block;animation:fade .18s ease}
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
   .blockhead{display:flex;align-items:center;gap:8px;margin:0 0 10px}
   .blockhead .bar{width:3px;height:16px;border-radius:2px;background:var(--blue)}
-  .blockhead h3{font-size:15px;margin:0;font-weight:600}
+  .blockhead h3{font-size:17px;margin:0;font-weight:600}
 
   .fact{border:1px solid var(--bd2);border-radius:var(--r);padding:11px 12px;margin-bottom:8px}
-  .fact .fn{font-size:13.5px;font-weight:600;color:var(--g3);margin-bottom:2px}
-  .fact .fd{font-size:12.5px;color:var(--g1);margin-bottom:8px}
+  .fact .fn{font-size:15.5px;font-weight:600;color:var(--g3);margin-bottom:2px}
+  .fact .fd{font-size:14.5px;color:var(--g1);margin-bottom:8px}
   .fact .fc{display:flex;gap:6px;flex-wrap:wrap}
-  .fact .fc button{font-family:inherit;font-size:12.5px;border:1px solid var(--bd);background:#fff;color:var(--g2);border-radius:999px;padding:4px 12px;cursor:pointer}
+  .fact .fc button{font-family:inherit;font-size:14.5px;border:1px solid var(--bd);background:#fff;color:var(--g2);border-radius:999px;padding:4px 12px;cursor:pointer}
   .fact .fc button.sel-ok{border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:600}
   .fact .fc button.sel-fix{border-color:var(--amber);background:var(--amber-bg);color:var(--amber);font-weight:600}
   .fact .fc button.sel-na{border-color:var(--bd);background:var(--bg);color:var(--g1);font-weight:600}
@@ -92,40 +92,40 @@
   .fact .ft{margin-top:8px;display:none}
   .fact .ft.on{display:block}
   .pomysl,.rola{border:1px dashed var(--bd);border-radius:var(--r);padding:12px;margin-bottom:8px;position:relative}
-  .delbtn{position:absolute;top:8px;right:8px;font-family:inherit;font-size:12px;font-weight:500;color:var(--red);background:#fff;border:1px solid var(--bd);border-radius:999px;padding:3px 10px;cursor:pointer}
+  .delbtn{position:absolute;top:8px;right:8px;font-family:inherit;font-size:14px;font-weight:500;color:var(--red);background:#fff;border:1px solid var(--bd);border-radius:999px;padding:3px 10px;cursor:pointer}
   .delbtn:hover{border-color:var(--red);background:var(--red-bg)}
-  .addbtn{font-family:inherit;font-size:13px;font-weight:500;color:var(--blue);background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:8px 13px;cursor:pointer}
+  .addbtn{font-family:inherit;font-size:15px;font-weight:500;color:var(--blue);background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:8px 13px;cursor:pointer}
   .addbtn:hover{background:#E4EDFA}
 
-  .rodo{display:flex;gap:8px;align-items:flex-start;background:var(--red-bg);border:1px solid #F3C9C6;border-radius:var(--r);padding:9px 11px;font-size:12.5px;color:#7A1A15;margin:2px 0 14px}
+  .rodo{display:flex;gap:8px;align-items:flex-start;background:var(--red-bg);border:1px solid #F3C9C6;border-radius:var(--r);padding:9px 11px;font-size:14.5px;color:#7A1A15;margin:2px 0 14px}
   .rodo b{color:var(--red)}
   details.more{margin:2px 0 14px;border:1px dashed var(--bd);border-radius:var(--r);padding:0 12px}
-  details.more summary{cursor:pointer;font-size:13px;color:var(--blue);font-weight:500;padding:9px 0;list-style:none}
+  details.more summary{cursor:pointer;font-size:15px;color:var(--blue);font-weight:500;padding:9px 0;list-style:none}
   details.more summary::-webkit-details-marker{display:none}
   details.more[open]{padding-bottom:6px}
   details.more summary::before{content:"▸ ";color:var(--g1)}
   details.more[open] summary::before{content:"▾ "}
 
   .actions{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
-  .btn{font-family:inherit;font-size:14px;font-weight:600;border-radius:var(--r);padding:10px 18px;cursor:pointer;border:1px solid transparent}
+  .btn{font-family:inherit;font-size:16px;font-weight:600;border-radius:var(--r);padding:10px 18px;cursor:pointer;border:1px solid transparent}
   .btn.pri{background:var(--blue);color:#fff}
   .btn.pri:hover{background:var(--blue-d)}
   .btn.pri:disabled{background:#9DB6DC;cursor:default}
   .btn.ghost{background:#fff;color:var(--g2);border-color:var(--bd)}
   .btn.ghost:hover{background:var(--bg2)}
-  .counter{margin-left:auto;font-size:12.5px;color:var(--g1)}
+  .counter{margin-left:auto;font-size:14.5px;color:var(--g1)}
   .counter b{color:var(--green);font-weight:600}
-  .senderr{display:none;width:100%;background:var(--red-bg);border:1px solid #F3C9C6;border-radius:var(--r);padding:9px 11px;font-size:13px;color:var(--red);font-weight:500}
+  .senderr{display:none;width:100%;background:var(--red-bg);border:1px solid #F3C9C6;border-radius:var(--r);padding:9px 11px;font-size:15px;color:var(--red);font-weight:500}
   .senderr.on{display:block}
 
   .done{display:none;text-align:center;padding:26px 20px}
   .done.on{display:block;animation:fade .18s ease}
-  .done .ok{width:46px;height:46px;border-radius:999px;background:var(--green-bg);color:var(--green);display:grid;place-items:center;margin:0 auto 12px;font-size:24px}
-  .done h3{margin:0 0 4px;font-size:17px}
-  .done p{margin:0 0 18px;color:var(--g2);font-size:14px}
+  .done .ok{width:46px;height:46px;border-radius:999px;background:var(--green-bg);color:var(--green);display:grid;place-items:center;margin:0 auto 12px;font-size:27px}
+  .done h3{margin:0 0 4px;font-size:19px}
+  .done p{margin:0 0 18px;color:var(--g2);font-size:16px}
   .done .actions{justify-content:center}
 
-  .note{font-size:11.5px;color:var(--g1);margin-top:22px;text-align:center;font-family:'IBM Plex Mono',monospace}
+  .note{font-size:13.5px;color:var(--g1);margin-top:22px;text-align:center;font-family:'IBM Plex Mono',monospace}
 </style>
 </head>
 <body>
@@ -147,8 +147,8 @@
     </g>
     <path d="M24 17.5 L26.6 22 L21.4 22 Z" fill="#E8B33A"/>
     <text x="24" y="40" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF" letter-spacing="1">WZ</text>
-  </svg><div id="hooBubble" style="display:none;position:absolute;bottom:-22px;left:8px;padding:3px 9px;border-radius:3px 999px 999px 999px;background:#E8B33A;color:#1C2740;font-size:11px;font-weight:700;white-space:nowrap;z-index:5;animation:hooPop 1.75s ease forwards">hu-huu!</div></div>
-  <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><b>SOWA WZ — zgłoszenia</b><a href="https://csri.wz.uw.edu.pl/" target="_blank" rel="noopener" data-tip="Strona CSRI — nowa karta" style="color:#9DB6DC;font-size:11px;line-height:1.3;text-decoration:none">projekt CSRI · csri.wz.uw.edu.pl</a></div>
+  </svg><div id="hooBubble" style="display:none;position:absolute;bottom:-22px;left:8px;padding:3px 9px;border-radius:3px 999px 999px 999px;background:#E8B33A;color:#1C2740;font-size:13px;font-weight:700;white-space:nowrap;z-index:5;animation:hooPop 1.75s ease forwards">hu-huu!</div></div>
+  <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><b>SOWA WZ — zgłoszenia</b><a href="https://csri.wz.uw.edu.pl/" target="_blank" rel="noopener" data-tip="Strona CSRI — nowa karta" style="color:#9DB6DC;font-size:13px;line-height:1.3;text-decoration:none">projekt CSRI · csri.wz.uw.edu.pl</a></div>
   <span class="sub">System Obsady, Wsparcia i Alokacji · Wydział Zarządzania UW</span>
 </div>
 
@@ -163,9 +163,8 @@
   <div class="card" id="idCard">
     <p class="h">Kto zgłasza <span style="float:right;text-transform:none;letter-spacing:0;font-weight:400;color:var(--g1)">* pole obowiązkowe</span></p>
     <div id="idForm">
-      <div class="row">
-        <div class="field"><label>Imię i nazwisko<span class="req">*</span></label><input type="text" id="imie"></div>
-        <div class="field"><label>E-mail wydziałowy<span class="req">*</span><span class="hint">wystarczy część przed @</span></label><div style="position:relative"><input type="email" id="email" placeholder="Twój login pocztowy" onblur="emailAuto()" oninput="emailSuf()" style="padding-right:130px"><span id="emailSuf" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--g1);font-size:14px;pointer-events:none">@wz.uw.edu.pl</span></div></div>
+      <div class="row" style="grid-template-columns:1fr">
+        <div class="field"><label>E-mail wydziałowy<span class="req">*</span><span class="hint">wystarczy część przed @</span></label><div style="position:relative"><input type="email" id="email" placeholder="Twój login pocztowy" onblur="emailAuto()" oninput="emailSuf()" style="padding-right:130px"><span id="emailSuf" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--g1);font-size:16px;pointer-events:none">@wz.uw.edu.pl</span></div></div>
       </div>
       <div class="field"><label>Jednostka<span class="req">*</span></label>
         <select id="jednostka" onchange="jedChange()">
@@ -214,7 +213,7 @@
       </div>
       <div class="field" id="jedInnaWrap" style="display:none"><label>Wpisz nazwę jednostki<span class="req">*</span></label><input type="text" id="jedInna"></div>
     </div>
-    <div id="idSummary">Zgłaszasz jako: <b id="idWho"></b><button class="btn ghost" data-tip="Poprawisz imię, e-mail lub jednostkę" onclick="editId()">Zmień</button></div>
+    <div id="idSummary">Zgłaszasz jako: <b id="idWho"></b><button class="btn ghost" data-tip="Poprawisz e-mail lub jednostkę" onclick="editId()">Zmień</button></div>
   </div>
 
   <!-- MAIN -->
@@ -237,11 +236,11 @@
       <!-- A: PROCES -->
       <div class="block" id="b-proces">
         <div class="blockhead"><span class="bar"></span><h3>Co zabiera Ci najwięcej czasu</h3></div>
-        <p style="font-size:12.5px;color:var(--g2);margin:0 0 12px">Chodzi o powtarzalną pracę ręczną, którą mógłby przejąć system. Dobry przykład: <i>„co semestr przepisuję obsadę z arkuszy katedr do planu i do USOS"</i>. Zły przykład: <i>„robię pensum w Excelu"</i> — to narzędzie, nie czynność; napisz, co po kolei robisz. Każda czynność ma osobną kartę, bo każda dostanie osobną decyzję „automatyzujemy / nie".</p>
-        <div style="font-size:13px;color:var(--g2);font-weight:500;margin:0 0 12px">Czynności: <b id="procCnt" style="color:var(--green)">1</b></div>
+        <p style="font-size:14.5px;color:var(--g2);margin:0 0 12px">Chodzi o powtarzalną pracę ręczną, którą mógłby przejąć system. Dobry przykład: <i>„co semestr przepisuję obsadę z arkuszy katedr do planu i do USOS"</i>. Zły przykład: <i>„robię pensum w Excelu"</i> — to narzędzie, nie czynność; napisz, co po kolei robisz. Każda czynność ma osobną kartę, bo każda dostanie osobną decyzję „automatyzujemy / nie".</p>
+        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Czynności: <b id="procCnt" style="color:var(--green)">1</b></div>
         <div id="procesy">
           <div class="pomysl">
-            <div class="pnum" style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:8px">Czynność 1</div>
+            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Czynność 1</div>
             <div class="field"><label>Nazwa czynności<span class="req">*</span></label><input type="text" data-k="nazwa" data-req="1"></div>
             <div class="field"><label>Co ją uruchamia<span class="hint">termin, mail, wniosek, początek semestru…</span></label><input type="text" data-k="wyzwalacz"></div>
             <div class="field"><label>Kroki po kolei<span class="req">*</span><span class="hint">tak jak wygląda to dziś</span></label><textarea data-k="kroki" data-req="1"></textarea></div>
@@ -277,10 +276,10 @@
       <!-- B: BRAK -->
       <div class="block" id="b-brak">
         <div class="blockhead"><span class="bar"></span><h3>Czego mi brakuje / nie widzę</h3></div>
-        <div style="font-size:13px;color:var(--g2);font-weight:500;margin:0 0 12px">Pozycji: <b id="brakCnt" style="color:var(--green)">1</b></div>
+        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Pozycji: <b id="brakCnt" style="color:var(--green)">1</b></div>
         <div id="braki">
           <div class="pomysl">
-            <div class="pnum" style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:8px">Pozycja 1</div>
+            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Pozycja 1</div>
             <div class="field"><label>Jakiej informacji brakuje<span class="req">*</span><span class="hint">np. pełne obciążenie pracownika, status IOS studenta, kto ma nieobsadzone grupy</span></label><textarea data-k="informacja" data-req="1"></textarea></div>
             <div class="field"><label>Gdzie dziś jej szukasz<span class="hint">USOS, mail, arkusz, dzwonię do sekcji…</span></label><input type="text" data-k="gdzie_szukam"></div>
             <div class="field"><label>Dlaczego to problem<span class="req">*</span></label>
@@ -303,11 +302,11 @@
       <!-- C: UWAGI -->
       <div class="block" id="b-uwaga">
         <div class="blockhead"><span class="bar"></span><h3>Uwagi do prototypu SOWA</h3></div>
-        <div style="background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:10px 12px;font-size:12.5px;color:var(--g2);margin:0 0 12px">Nie widziałeś jeszcze SOWY? <a id="sowaLink" href="#" target="_blank" rel="noopener" data-tip="Nowa karta — formularz nie zginie" style="color:var(--blue);font-weight:600">Otwórz wersję demonstracyjną</a> (otworzy się w nowej karcie — nic z tego formularza nie zginie). Poklikaj po ekranach, sprawdź swoją codzienną część pracy i wróć tu zapisać, co nie działa albo jest inaczej niż naprawdę. Demo pokazuje dane wszystkich sekcji naraz — w docelowym systemie zobaczysz tylko to, co należy do Twojej roli. <b>Wszystkie dane w demo są fikcyjne.</b></div>
-        <div style="font-size:13px;color:var(--g2);font-weight:500;margin:0 0 12px">Uwag: <b id="uwagaCnt" style="color:var(--green)">1</b></div>
+        <div style="background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:10px 12px;font-size:14.5px;color:var(--g2);margin:0 0 12px">Nie widziałeś jeszcze SOWY? <a id="sowaLink" href="#" target="_blank" rel="noopener" data-tip="Nowa karta — formularz nie zginie" style="color:var(--blue);font-weight:600">Otwórz wersję demonstracyjną</a> (otworzy się w nowej karcie — nic z tego formularza nie zginie). Poklikaj po ekranach, sprawdź swoją codzienną część pracy i wróć tu zapisać, co nie działa albo jest inaczej niż naprawdę. Demo pokazuje dane wszystkich sekcji naraz — w docelowym systemie zobaczysz tylko to, co należy do Twojej roli. <b>Wszystkie dane w demo są fikcyjne.</b></div>
+        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Uwag: <b id="uwagaCnt" style="color:var(--green)">1</b></div>
         <div id="uwagi">
           <div class="pomysl">
-            <div class="pnum" style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:8px">Uwaga 1</div>
+            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Uwaga 1</div>
             <div class="row">
               <div class="field"><label>Której części SOWA dotyczy<span class="req">*</span></label>
                 <select data-k="czesc_sowa" data-req="1"><option value="">— wybierz —</option><option>Pulpit — dziś do zrobienia</option><option>Obsada zajęć</option><option>Moje zajęcia i pensum</option><option>Pracownicy i prowadzący</option><option>Rezerwacja sal i sesja</option><option>Informacje o studentach (IOS)</option><option>Seminaria i obrony</option><option>Publikacje i dorobek</option><option>Projekty badawcze</option><option>Badania statutowe (BST)</option><option>Nagrody Dziekana</option><option>Dodatki i ocena okresowa</option><option>Onboarding i offboarding</option><option>Pliki i dokumenty (integracja z dyskiem)</option><option>Warstwa wsparcia (podpowiedzi)</option><option>Warstwa AI</option><option>Logowanie i role</option><option>Całość / ogólne</option></select>
@@ -329,8 +328,8 @@
       <!-- D: KOREKTA -->
       <div class="block" id="b-korekta">
         <div class="blockhead"><span class="bar"></span><h3>Czy dobrze opisaliśmy Waszą pracę?</h3></div>
-        <p style="font-size:12.5px;color:var(--g1);margin:0 0 12px">Przygotowując wersję demonstracyjną, spisaliśmy, jak naszym zdaniem działa wydział. Zanim zaczniemy budować, sprawdzamy to z Wami — każde założenie jest opisane poniżej, niczego nie musisz doczytywać. Zaznacz stanowisko przy punktach, które znasz; resztę oznacz „nie zajmuję się tym" (= nie znam tego tematu; „nie dotyczy" = znam temat, ale u mnie to nie występuje). Wysyłasz wszystko jednym zgłoszeniem.</p>
-        <div style="font-size:13px;color:var(--g2);font-weight:500;margin:0 0 12px">Zaznaczono: <b id="korCnt" style="color:var(--green)">0</b> z 15</div>
+        <p style="font-size:14.5px;color:var(--g1);margin:0 0 12px">Przygotowując wersję demonstracyjną, spisaliśmy, jak naszym zdaniem działa wydział. Zanim zaczniemy budować, sprawdzamy to z Wami — każde założenie jest opisane poniżej, niczego nie musisz doczytywać. Zaznacz stanowisko przy punktach, które znasz; resztę oznacz „nie zajmuję się tym" (= nie znam tego tematu; „nie dotyczy" = znam temat, ale u mnie to nie występuje). Wysyłasz wszystko jednym zgłoszeniem.</p>
+        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Zaznaczono: <b id="korCnt" style="color:var(--green)">0</b> z 15</div>
 
         <div class="fact"><div class="fn">Kto układa obsadę zajęć</div><div class="fd">Zakładamy: obsadę na studiach I i II stopnia układają kierownicy katedr, a na anglojęzycznych i podyplomowych — koordynatorzy przedmiotów.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
         <div class="fact"><div class="fn">Karty pensum</div><div class="fd">Zakładamy: karty rozlicza się z zajęć faktycznie zrealizowanych, a w ciągu roku jest 10–20 zmian (choroby, rezygnacje, rozwiązane grupy).</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
@@ -352,8 +351,8 @@
       <!-- E: DOSTEP -->
       <div class="block" id="b-dostep">
         <div class="blockhead"><span class="bar"></span><h3>Kto będzie używał systemu</h3></div>
-        <p style="font-size:12.5px;color:var(--g1);margin:0 0 6px">Wypełnia kierownik jednostki — najlepiej jedno zgłoszenie na jednostkę, ze wszystkimi rolami naraz; uzupełnienie możesz dosłać później. Dla każdej roli w zespole podaj, ile osób ją pełni i czy mają wpisywać dane, czy tylko je przeglądać. Dzięki temu ustalimy, kto dostanie konto i z jakimi uprawnieniami.</p>
-        <div style="font-size:13px;color:var(--g2);font-weight:500;margin:0 0 12px">Ról: <b id="rolaCnt" style="color:var(--green)">1</b></div>
+        <p style="font-size:14.5px;color:var(--g1);margin:0 0 6px">Wypełnia kierownik jednostki — najlepiej jedno zgłoszenie na jednostkę, ze wszystkimi rolami naraz; uzupełnienie możesz dosłać później. Dla każdej roli w zespole podaj, ile osób ją pełni i czy mają wpisywać dane, czy tylko je przeglądać. Dzięki temu ustalimy, kto dostanie konto i z jakimi uprawnieniami.</p>
+        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Ról: <b id="rolaCnt" style="color:var(--green)">1</b></div>
         <div id="role">
           <div class="rola">
             <div class="row">
@@ -370,10 +369,10 @@
       <!-- F: INNE -->
       <div class="block" id="b-inne">
         <div class="blockhead"><span class="bar"></span><h3>Inne pomysły lub problemy</h3></div>
-        <div style="font-size:13px;color:var(--g2);font-weight:500;margin:0 0 12px">Pomysłów: <b id="pomCnt" style="color:var(--green)">1</b></div>
+        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Pomysłów: <b id="pomCnt" style="color:var(--green)">1</b></div>
         <div id="pomysly">
           <div class="pomysl">
-            <div class="pnum" style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:8px">Pomysł 1</div>
+            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Pomysł 1</div>
             <div class="field"><label>Czego dotyczy<span class="hint">jednym zdaniem</span></label><input type="text" data-k="czego_dotyczy"></div>
             <div class="field"><label>Opis<span class="req">*</span></label><textarea data-k="opis" data-req="1"></textarea></div>
             <div class="field" style="margin:0;max-width:220px"><label>Jak istotne<span class="hint">waga tego pomysłu</span></label><select data-k="waga"><option value="">— wybierz —</option><option>drobiazg</option><option>przydatne</option><option>ważne</option><option>pilne</option></select></div>
@@ -383,16 +382,16 @@
       </div>
 
       <div class="actions" id="actionsRow" style="display:none;background:var(--bg2);border:1px solid var(--bd2);border-radius:var(--r);padding:14px 16px">
-        <button class="btn pri" id="sendBtn" data-tip="Najpierw pokażemy podsumowanie do potwierdzenia" onclick="send()" style="padding:13px 34px;font-size:16px">Wyślij</button>
-        <span style="font-size:13px;color:var(--g2);flex:1;min-width:220px">Wysyłasz, kiedy chcesz: od razu jedną zakładkę albo najpierw wypełnij kilka i wyślij na końcu — nic po drodze nie zginie.</span>
+        <button class="btn pri" id="sendBtn" data-tip="Najpierw pokażemy podsumowanie do potwierdzenia" onclick="send()" style="padding:13px 34px;font-size:18px">Wyślij</button>
+        <span style="font-size:15px;color:var(--g2);flex:1;min-width:220px">Wysyłasz, kiedy chcesz: od razu jedną zakładkę albo najpierw wypełnij kilka i wyślij na końcu — nic po drodze nie zginie.</span>
         <span class="counter" id="cnt"></span>
         <div class="senderr" id="sendErr"></div>
-        <div id="confirmBox" style="display:none;width:100%;background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:10px 12px;font-size:13px;color:var(--ink)">
+        <div id="confirmBox" style="display:none;width:100%;background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:10px 12px;font-size:15px;color:var(--ink)">
           <div id="confirmTxt"></div>
           <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-            <button class="btn pri" onclick="doSend()" style="padding:7px 14px;font-size:13px">Tak, wyślij</button>
-            <button class="btn pri" id="sendAllBtn" onclick="doSendAll()" style="display:none;padding:7px 14px;font-size:13px;background:var(--green)"></button>
-            <button class="btn ghost" onclick="hideConfirm()" style="padding:7px 14px;font-size:13px">Wróć, jeszcze sprawdzę</button>
+            <button class="btn pri" onclick="doSend()" style="padding:7px 14px;font-size:15px">Tak, wyślij</button>
+            <button class="btn pri" id="sendAllBtn" onclick="doSendAll()" style="display:none;padding:7px 14px;font-size:15px;background:var(--green)"></button>
+            <button class="btn ghost" onclick="hideConfirm()" style="padding:7px 14px;font-size:15px">Wróć, jeszcze sprawdzę</button>
           </div>
         </div>
       </div>
@@ -403,7 +402,7 @@
       <div class="ok">✓</div>
       <h3>Zgłoszenie zapisane</h3>
       <p>Dziękujemy. Możesz dodać kolejne — dane zgłaszającego zostają wypełnione.</p>
-      <div id="doneWarn" style="display:none;background:var(--amber-bg);color:var(--amber);border-radius:var(--r);padding:9px 12px;font-size:12.5px;margin:0 auto 14px;max-width:520px;text-align:left"></div>
+      <div id="doneWarn" style="display:none;background:var(--amber-bg);color:var(--amber);border-radius:var(--r);padding:9px 12px;font-size:14.5px;margin:0 auto 14px;max-width:520px;text-align:left"></div>
       <div class="actions">
         <button class="btn pri" onclick="again()">Dodaj kolejne zgłoszenie</button>
         <button class="btn ghost" data-tip="Kończy pracę i czyści formularz — niewysłane wpisy przepadną" onclick="finish()">Zakończ</button>
@@ -420,7 +419,7 @@
   const ENDPOINT = "https://script.google.com/macros/s/AKfycbwdyyi8oRbz8Dq4iDgRFIPx2YajPjmgYv39tapED9s3Fl0WXPJZpymqneJjd_ing2l9_Q/exec";
   const TOKEN = "SOWA-WZ-XgNleo1sMEYWUEOaRCRciJxU";
   const LINK_SOWA = "https://nawrockipiotr.github.io/sowa-wz/demo/";
-  const DOMENA = "uw.edu.pl"; // walidacja: każda końcówka uw.edu.pl
+  const DOMENA = "uw.edu.pl"; // walidacja: kazda koncowka uw.edu.pl
   const DOMENA_PODPOWIEDZ = "wz.uw.edu.pl";
   const WERSJA_PROTOTYPU = "v17";
   const TERMIN = "2026-10-10"; // ostatni dzień przyjmowania zgłoszeń (włącznie)
@@ -438,7 +437,7 @@
   if(new Date() > new Date(TERMIN+'T23:59:59')){
     document.getElementById('idCard').style.display='none';
     document.querySelector('.lead p').textContent='Zbiórka zgłoszeń do SOWY — Systemu Obsady, Wsparcia i Alokacji WZ — została zakończona. Dziękujemy za wszystkie nadesłane uwagi.';
-    document.getElementById('mainCard').innerHTML='<p class="h">Zbiórka zakończona</p><p style="font-size:14px;color:var(--g2);margin:0">Zbieranie zgłoszeń zakończyło się '+new Date(TERMIN).toLocaleDateString('pl-PL',{day:'numeric',month:'long',year:'numeric'})+'. Dziękujemy wszystkim, którzy podzielili się uwagami — pracujemy nad ich analizą. Pytania: <a href="mailto:'+KONTAKT+'">'+KONTAKT+'</a>.</p>';
+    document.getElementById('mainCard').innerHTML='<p class="h">Zbiórka zakończona</p><p style="font-size:16px;color:var(--g2);margin:0">Zbieranie zgłoszeń zakończyło się '+new Date(TERMIN).toLocaleDateString('pl-PL',{day:'numeric',month:'long',year:'numeric'})+'. Dziękujemy wszystkim, którzy podzielili się uwagami — pracujemy nad ich analizą. Pytania: <a href="mailto:'+KONTAKT+'">'+KONTAKT+'</a>.</p>';
     document.querySelector('.lead .term').textContent='Zbiórka zgłoszeń zakończona';
   }
 
@@ -520,7 +519,7 @@
     document.getElementById('cnt2').innerHTML=s;
   }
   function collapseId(){
-    const who=(document.getElementById('imie').value||'—')+' · '+(jedName()||t('jednostka?'));
+    const who=(document.getElementById('email').value.trim()||'—')+' · '+(jedName()||t('jednostka?'));
     document.getElementById('idWho').textContent=who;
     document.getElementById('idForm').style.display='none';
     document.getElementById('idSummary').style.display='flex';
@@ -550,12 +549,11 @@
     let first=null;
     const bad=el=>{markBad(el); if(!first) first=el;};
     // metryczka
-    const imie=document.getElementById('imie'), email=document.getElementById('email'), jed=document.getElementById('jednostka'), jedInna=document.getElementById('jedInna');
-    if(!imie.value.trim()) bad(imie);
+    const email=document.getElementById('email'), jed=document.getElementById('jednostka'), jedInna=document.getElementById('jedInna');
     const em=email.value.trim().toLowerCase();
     if(!em || !/^[^\s@]+@([a-z0-9-]+\.)*uw\.edu\.pl$/.test(em)){
       bad(email);
-      if(em) showErr(t('Podaj służbowy adres uczelniany')+' (…@uw.edu.pl)');
+      if(em) showErr(t('Podaj sluzbowy adres uczelniany')+' (…@uw.edu.pl)');
     }
     if(!jed.value) bad(jed);
     else if(jed.value==='Inna jednostka' && !jedInna.value.trim()) bad(jedInna);
@@ -597,7 +595,7 @@
   function collect(){
     const payload={
       token:TOKEN,
-      imie_nazwisko:document.getElementById('imie').value.trim(),
+      imie_nazwisko:document.getElementById('email').value.trim().split('@')[0],
       email:document.getElementById('email').value.trim(),
       jednostka:jedName(),
       typ:TYP[current],
@@ -647,16 +645,16 @@
   function send(){
     if(!validate()) return;
     const inne=unsentOthers();
-    let html='<div style="font-size:11.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--g1);margin-bottom:6px">'+t('Sprawdź przed wysłaniem')+'</div>';
+    let html='<div style="font-size:13.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--g1);margin-bottom:6px">'+t('Sprawdź przed wysłaniem')+'</div>';
     [[current,true],...inne.map(k=>[k,false])].forEach(([k,act])=>{
       html+='<div style="display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px dashed var(--bd2)">'
         +'<span style="width:9px;height:9px;border-radius:999px;flex:none;background:'+(act?'var(--blue)':'#E8B33A')+'"></span>'
         +'<span style="flex:1;font-weight:'+(act?'600':'400')+'">'+t(TYTUL[k])+'</span>'
-        +'<span style="color:var(--g1);font-size:12.5px;white-space:nowrap">'+t('pozycji:')+' '+ileTyp(k)+'</span>'
-        +(act?'<span style="font-size:11px;font-weight:600;color:var(--blue);background:var(--bg3);padding:2px 8px;border-radius:999px">'+t('ta zakładka')+'</span>':'<span style="font-size:11px;font-weight:600;color:var(--amber);background:var(--amber-bg);padding:2px 8px;border-radius:999px">'+t('niewysłane')+'</span>')
+        +'<span style="color:var(--g1);font-size:14.5px;white-space:nowrap">'+t('pozycji:')+' '+ileTyp(k)+'</span>'
+        +(act?'<span style="font-size:13px;font-weight:600;color:var(--blue);background:var(--bg3);padding:2px 8px;border-radius:999px">'+t('ta zakładka')+'</span>':'<span style="font-size:13px;font-weight:600;color:var(--amber);background:var(--amber-bg);padding:2px 8px;border-radius:999px">'+t('niewysłane')+'</span>')
         +'</div>';
     });
-    if(inne.length) html+='<div style="font-size:12px;color:var(--g1);margin-top:8px">'+t('„Tak, wyślij” = tylko otwarta zakładka. „Wyślij wszystkie” = wszystko z tej listy.')+'</div>';
+    if(inne.length) html+='<div style="font-size:14px;color:var(--g1);margin-top:8px">'+t('„Tak, wyślij” = tylko otwarta zakładka. „Wyślij wszystkie” = wszystko z tej listy.')+'</div>';
     document.getElementById('confirmTxt').innerHTML=html;
     const ab=document.getElementById('sendAllBtn');
     ab.style.display=inne.length?'inline-block':'none';
