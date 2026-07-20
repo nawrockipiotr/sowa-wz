@@ -3,807 +3,166 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SOWA WZ — zgłoszenia usprawnień</title>
+<title>SOWA WZ — dostęp dla pracowników</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --blue:#2D5BA6; --blue-d:#234A8C; --ink:#1C2740;
-    --g1:#667085; --g2:#475467; --g3:#344054;
-    --bd:#D5DAE2; --bd2:#E2E6EC;
-    --bg:#F0F2F5; --bg2:#F6F9FD; --bg3:#EEF3FB;
-    --green:#1E6B41; --green-bg:#E7F2EB;
-    --red:#B3261E; --red-bg:#FCEBEA;
-    --amber:#8A6100; --amber-bg:#FFF3D6;
-    --r:7px;
-  }
+  :root{--blue:#2D5BA6;--blue-d:#234A8C;--ink:#1C2740;--g1:#667085;--g2:#475467;--bd:#D5DAE2;--bd2:#E2E6EC;--bg:#F0F2F5;--red:#B3261E;--r:7px}
   *{box-sizing:border-box}
-  body{margin:0;font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
-  a{color:var(--blue)}a:hover{color:var(--blue-d)}
-  .topbar{background:var(--ink);color:#fff;padding:11px 22px;display:flex;align-items:center;gap:12px}
-  .topbar .logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);display:grid;place-items:center;flex:none}
-  .topbar b{font-weight:600;font-size:17px;letter-spacing:.2px}
-  .topbar .sub{color:#9DB6DC;font-size:14.5px;margin-left:auto}
-  .wrap{max-width:760px;margin:26px auto 60px;padding:0 18px}
-  .lead{margin:0 0 20px}
-  .lead h1{font-size:25px;margin:0 0 6px;font-weight:700}
-  .lead p{margin:0;color:var(--g2);font-size:16px}
-  .lead .term{display:inline-block;margin-top:10px;background:var(--amber-bg);color:var(--amber);font-size:14.5px;font-weight:500;padding:4px 10px;border-radius:999px}
-  .card{background:#fff;border:1px solid var(--bd2);border-radius:var(--r);padding:20px;margin-bottom:16px}
-  .card > .h{font-size:14px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--g1);margin:0 0 14px}
-  label{display:block;font-size:15.5px;font-weight:500;color:var(--g3);margin:0 0 5px}
-  label .req{color:var(--red);margin-left:2px}
-  label .hint{display:block;font-weight:400;color:var(--g1);font-size:14.5px;margin-top:1px}
-  input[type=text],input[type=email],input[type=number],select,textarea{width:100%;font-family:inherit;font-size:16px;color:var(--ink);padding:9px 11px;border:1px solid var(--bd);border-radius:var(--r);background:#fff;outline:none}
-  input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--bg3)}
-  textarea{min-height:74px;resize:vertical}
-  .invalid{border-color:var(--red) !important;box-shadow:0 0 0 3px var(--red-bg) !important}
-  .field{margin-bottom:14px}
-  .field:last-child{margin-bottom:0}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-  .row:last-child{margin-bottom:0}
-  @media(max-width:560px){.row{grid-template-columns:1fr}}
-  .row .field{display:flex;flex-direction:column;margin-bottom:0}
-  .row .field label{flex:1}
-  button,select{transition:background .2s ease,color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease,opacity .2s ease}
-  button:not([disabled]):hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(20,30,55,0.16)}
-  button:not([disabled]):active{transform:translateY(0);box-shadow:0 1px 3px rgba(20,30,55,0.15)}
-  select:hover{border-color:var(--blue) !important;box-shadow:0 0 0 3px rgba(45,91,166,0.14)}
-  :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
-  [data-tip]{position:relative}
-  [data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:13.5px;font-weight:500;line-height:1.4;padding:6px 10px;border-radius:6px;width:max-content;max-width:240px;white-space:normal;text-align:left;z-index:30;pointer-events:none}
-  .logo .sowa-powieka{opacity:0}
-  .logo.mruga .sowa-powieka{animation:sowaMrug 1.1s ease-in-out}
-  @keyframes sowaMrug{0%,100%{opacity:0}15%,45%{opacity:1}60%{opacity:0}70%,85%{opacity:1}}
-  @keyframes hooPop{0%{opacity:0;transform:translateY(6px) scale(0.7)}12%{opacity:1;transform:none}78%{opacity:1;transform:none}100%{opacity:0;transform:none}}
-
-  #idSummary{display:none;align-items:center;gap:10px;font-size:15.5px;color:var(--g2)}
-  #idSummary b{color:var(--ink);font-weight:600}
-  #idSummary button{margin-left:auto}
-
-  .types{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:560px){.types{grid-template-columns:1fr}}
-  .type{border:1.5px solid var(--bd);border-radius:var(--r);padding:13px 14px;cursor:pointer;background:#fff;transition:border-color .12s,background .12s;text-align:left}
-  .type:hover{border-color:#9DB6DC;background:var(--bg2)}
-  .type.on{border-color:var(--blue);background:var(--bg3)}
-  .type .t{font-size:16.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px}
-  .type .dot{width:12px;height:12px;border-radius:999px;background:var(--bd);flex:none}
-  .type.on .dot{background:var(--blue)}
-  .type.pend .dot{background:#E8B33A;box-shadow:0 0 0 3px var(--amber-bg)}
-  .type.sent .dot{background:var(--green);box-shadow:0 0 0 3px var(--green-bg)}
-  .type .d{font-size:14.5px;color:var(--g1);margin-top:4px}
-
-  .block{display:none}
-  .block.on{display:block;animation:fade .18s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-  .blockhead{display:flex;align-items:center;gap:8px;margin:0 0 10px}
-  .blockhead .bar{width:3px;height:16px;border-radius:2px;background:var(--blue)}
-  .blockhead h3{font-size:17px;margin:0;font-weight:600}
-
-  .fact{border:1px solid var(--bd2);border-radius:var(--r);padding:11px 12px;margin-bottom:8px}
-  .fact .fn{font-size:15.5px;font-weight:600;color:var(--g3);margin-bottom:2px}
-  .fact .fd{font-size:14.5px;color:var(--g1);margin-bottom:8px}
-  .fact .fc{display:flex;gap:6px;flex-wrap:wrap}
-  .fact .fc button{font-family:inherit;font-size:14.5px;border:1px solid var(--bd);background:#fff;color:var(--g2);border-radius:999px;padding:4px 12px;cursor:pointer}
-  .fact .fc button.sel-ok{border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:600}
-  .fact .fc button.sel-fix{border-color:var(--amber);background:var(--amber-bg);color:var(--amber);font-weight:600}
-  .fact .fc button.sel-na{border-color:var(--bd);background:var(--bg);color:var(--g1);font-weight:600}
-  .fact .fc button.sel-nd{border-color:var(--bd);background:var(--bg);color:var(--g1);font-weight:600;font-style:italic}
-  .fact .ft{margin-top:8px;display:none}
-  .fact .ft.on{display:block}
-  .pomysl,.rola{border:1px dashed var(--bd);border-radius:var(--r);padding:12px;margin-bottom:8px;position:relative}
-  .delbtn{position:absolute;top:8px;right:8px;font-family:inherit;font-size:14px;font-weight:500;color:var(--red);background:#fff;border:1px solid var(--bd);border-radius:999px;padding:3px 10px;cursor:pointer}
-  .delbtn:hover{border-color:var(--red);background:var(--red-bg)}
-  .addbtn{font-family:inherit;font-size:15px;font-weight:500;color:var(--blue);background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:8px 13px;cursor:pointer}
-  .addbtn:hover{background:#E4EDFA}
-
-  .rodo{display:flex;gap:8px;align-items:flex-start;background:var(--red-bg);border:1px solid #F3C9C6;border-radius:var(--r);padding:9px 11px;font-size:14.5px;color:#7A1A15;margin:2px 0 14px}
-  .rodo b{color:var(--red)}
-  details.more{margin:2px 0 14px;border:1px dashed var(--bd);border-radius:var(--r);padding:0 12px}
-  details.more summary{cursor:pointer;font-size:15px;color:var(--blue);font-weight:500;padding:9px 0;list-style:none}
-  details.more summary::-webkit-details-marker{display:none}
-  details.more[open]{padding-bottom:6px}
-  details.more summary::before{content:"▸ ";color:var(--g1)}
-  details.more[open] summary::before{content:"▾ "}
-
-  .actions{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
-  .btn{font-family:inherit;font-size:16px;font-weight:600;border-radius:var(--r);padding:10px 18px;cursor:pointer;border:1px solid transparent}
-  .btn.pri{background:var(--blue);color:#fff}
-  .btn.pri:hover{background:var(--blue-d)}
-  .btn.pri:disabled{background:#9DB6DC;cursor:default}
-  .btn.ghost{background:#fff;color:var(--g2);border-color:var(--bd)}
-  .btn.ghost:hover{background:var(--bg2)}
-  .counter{margin-left:auto;font-size:14.5px;color:var(--g1)}
-  .counter b{color:var(--green);font-weight:600}
-  .senderr{display:none;width:100%;background:var(--red-bg);border:1px solid #F3C9C6;border-radius:var(--r);padding:9px 11px;font-size:15px;color:var(--red);font-weight:500}
-  .senderr.on{display:block}
-
-  .done{display:none;text-align:center;padding:26px 20px}
-  .done.on{display:block;animation:fade .18s ease}
-  .done .ok{width:46px;height:46px;border-radius:999px;background:var(--green-bg);color:var(--green);display:grid;place-items:center;margin:0 auto 12px;font-size:27px}
-  .done h3{margin:0 0 4px;font-size:19px}
-  .done p{margin:0 0 18px;color:var(--g2);font-size:16px}
-  .done .actions{justify-content:center}
-
-  .note{font-size:13.5px;color:var(--g1);margin-top:22px;text-align:center;font-family:'IBM Plex Mono',monospace}
+  body{margin:0;font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  .topbar{background:var(--ink);color:#fff;padding:13px 22px;display:flex;align-items:center;gap:12px}
+  .topbar .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);display:grid;place-items:center;flex:none}
+  .topbar b{font-weight:600;font-size:17px}
+  .topbar .sub{color:#9DB6DC;font-size:14px;margin-left:auto}
+  .center{min-height:calc(100vh - 66px);display:grid;place-items:center;padding:20px}
+  .card{background:#fff;border:1px solid var(--bd2);border-radius:10px;padding:30px 32px;width:100%;max-width:420px;box-shadow:0 1px 3px rgba(16,24,40,.07),0 8px 24px rgba(16,24,40,.06)}
+  h1{font-size:21px;margin:0 0 6px}
+  p.sub{margin:0 0 20px;color:var(--g2);font-size:15px;line-height:1.5}
+  label{display:block;font-size:15px;font-weight:500;color:var(--g2);margin:0 0 6px}
+  input{width:100%;font-family:inherit;font-size:17px;padding:11px 13px;border:1px solid var(--bd);border-radius:var(--r);outline:none}
+  input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #EEF3FB}
+  .err{display:none;color:var(--red);font-size:14px;margin-top:7px;font-weight:500}
+  .err.on{display:block}
+  .btn{width:100%;margin-top:16px;font-family:inherit;font-size:17px;font-weight:600;border-radius:var(--r);padding:13px;border:none;background:var(--blue);color:#fff;cursor:pointer;transition:background .2s}
+  .btn:hover{background:var(--blue-d)}
+  .btn:disabled{background:#9DB6DC;cursor:default}
+  .hint{font-size:13.5px;color:var(--g1);margin-top:12px;line-height:1.5}
+  .linkbtn{border:none;background:none;color:var(--blue);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
+  .linkbtn:disabled{color:var(--g1);cursor:default;text-decoration:none}
+  #step2{display:none}
+  #loader{display:none;text-align:center;color:var(--g2);font-size:15px;padding:40px 0}
 </style>
 </head>
 <body>
 <div class="topbar">
-  <div class="logo" id="sowaLogo" onmouseenter="hoot()" onclick="hoot()" style="position:relative;cursor:pointer"><svg viewBox="0 0 48 48" width="34" height="34" aria-label="SOWA WZ">
-    <circle cx="17.5" cy="15" r="9.2" fill="none" stroke="#FFFFFF" stroke-width="2.6"/>
-    <circle cx="30.5" cy="15" r="9.2" fill="none" stroke="#FFFFFF" stroke-width="2.6"/>
-    <circle cx="17.5" cy="15" r="7.6" fill="#FFFFFF"/>
-    <circle cx="30.5" cy="15" r="7.6" fill="#FFFFFF"/>
-    <circle cx="17.5" cy="15" r="4" fill="#1C2740"/>
-    <circle cx="30.5" cy="15" r="4" fill="#1C2740"/>
-    <circle cx="18.9" cy="13.6" r="1.4" fill="#FFFFFF"/>
-    <circle cx="31.9" cy="13.6" r="1.4" fill="#FFFFFF"/>
-    <g class="sowa-powieka" opacity="0">
-      <path d="M9.9 15 Q17.5 11 25.1 15 Q17.5 19.5 9.9 15 Z" fill="#FFFFFF"/>
-      <path d="M9.9 15 Q17.5 11 25.1 15" stroke="#1C2740" stroke-width="1.3" fill="none"/>
-      <path d="M22.9 15 Q30.5 11 38.1 15 Q30.5 19.5 22.9 15 Z" fill="#FFFFFF"/>
-      <path d="M22.9 15 Q30.5 11 38.1 15" stroke="#1C2740" stroke-width="1.3" fill="none"/>
-    </g>
-    <path d="M24 17.5 L26.6 22 L21.4 22 Z" fill="#E8B33A"/>
-    <text x="24" y="40" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF" letter-spacing="1">WZ</text>
-  </svg><div id="hooBubble" style="display:none;position:absolute;bottom:-22px;left:8px;padding:3px 9px;border-radius:3px 999px 999px 999px;background:#E8B33A;color:#1C2740;font-size:13px;font-weight:700;white-space:nowrap;z-index:5;animation:hooPop 1.75s ease forwards">hu-huu!</div></div>
-  <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><b>SOWA WZ — zgłoszenia</b><a href="https://csri.wz.uw.edu.pl/" target="_blank" rel="noopener" data-tip="Strona CSRI — nowa karta" style="color:#9DB6DC;font-size:13px;line-height:1.3;text-decoration:none">projekt CSRI · csri.wz.uw.edu.pl</a></div>
-  <span class="sub">System Obsady, Wsparcia i Alokacji · Wydział Zarządzania UW</span>
+  <div class="logo"><svg viewBox="0 0 48 48" width="36" height="36" aria-label="SOWA WZ"><circle cx="17.5" cy="15" r="9.2" fill="none" stroke="#FFF" stroke-width="2.6"/><circle cx="30.5" cy="15" r="9.2" fill="none" stroke="#FFF" stroke-width="2.6"/><circle cx="17.5" cy="15" r="7.6" fill="#FFF"/><circle cx="30.5" cy="15" r="7.6" fill="#FFF"/><circle cx="17.5" cy="15" r="4" fill="#1C2740"/><circle cx="30.5" cy="15" r="4" fill="#1C2740"/><circle cx="18.9" cy="13.6" r="1.4" fill="#FFF"/><circle cx="31.9" cy="13.6" r="1.4" fill="#FFF"/><path d="M24 17.5 L26.6 22 L21.4 22 Z" fill="#E8B33A"/><text x="24" y="40" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="14.5" font-weight="700" fill="#FFF" letter-spacing="1">WZ</text></svg></div>
+  <b>SOWA WZ</b>
+  <span class="sub">Wydział Zarządzania UW · projekt CSRI</span>
 </div>
-
-<div class="wrap">
-  <div class="lead">
-    <h1>Co usprawnić w pracy wydziału?</h1>
-    <p>Budujemy <a id="sowaLeadLink" href="#" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600">SOWĘ — System Obsady, Wsparcia i Alokacji WZ</a>, który ma zdjąć z nas ręczne przepisywanie danych i krążenie arkuszy między pokojami. Zanim zaczniemy, chcemy usłyszeć od Was: co zabiera czas, czego brakuje, co poprawić. Wybierz poniżej, co chcesz zgłosić — po wysłaniu możesz od razu dodać następne.</p>
-    <span class="term">Zbieramy zgłoszenia do 10 października 2026</span>
-  </div>
-
-  <!-- IDENTITY -->
-  <div class="card" id="idCard">
-    <p class="h">Kto zgłasza <span style="float:right;text-transform:none;letter-spacing:0;font-weight:400;color:var(--g1)">* pole obowiązkowe</span></p>
-    <div id="idForm">
-      <div class="row" style="grid-template-columns:1fr">
-        <div class="field"><label>E-mail wydziałowy<span class="req">*</span><span class="hint">wystarczy część przed @</span></label><div style="position:relative"><input type="email" id="email" placeholder="Twój login pocztowy" onblur="emailAuto()" oninput="emailSuf()" style="padding-right:130px"><span id="emailSuf" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--g1);font-size:16px;pointer-events:none">@wz.uw.edu.pl</span></div></div>
+<div class="center">
+  <div class="card" id="loginCard">
+    <h1>Dostęp dla pracowników WZ</h1>
+    <p class="sub">Treść jest dostępna po zalogowaniu adresem wydziałowym.</p>
+    <div id="step1">
+      <label for="em">E-mail wydziałowy</label>
+      <div style="position:relative">
+        <input type="email" id="em" placeholder="Twój login pocztowy" autocomplete="email" oninput="emSuf()" onblur="emAuto()" style="padding-right:132px">
+        <span id="emSufik" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--g1);font-size:16px;pointer-events:none">@wz.uw.edu.pl</span>
       </div>
-      <div class="field"><label>Jednostka<span class="req">*</span></label>
-        <select id="jednostka" onchange="jedChange()">
-          <option value="">— wybierz —</option>
-          <optgroup label="Administracja i wsparcie">
-            <option>Archiwum</option>
-            <option>Biblioteka WZ</option>
-            <option>Biuro Karier i Absolwentów</option>
-            <option>Biuro Promocji</option>
-            <option>Dział finansowy</option>
-            <option>Dziekanat Ogólny</option>
-            <option>Koordynator ds. USOS</option>
-            <option>Ośrodek Komputerowy (IT WZ)</option>
-            <option>Sekcja Administracyjno-Techniczna</option>
-            <option>Sekretariat Dziekana</option>
-            <option>Inna sekcja dziekanatu / administracji</option>
-          </optgroup>
-          <optgroup label="Dydaktyka i studenci">
-            <option>Biuro Spraw Studenckich</option>
-            <option>Dziekanat Studiów Doktoranckich</option>
-            <option>Dziekanat Studiów International Business Program</option>
-            <option>Dziekanat Studiów Niestacjonarnych, Licencjackich</option>
-            <option>Dziekanat Studiów Niestacjonarnych, Magisterskich</option>
-            <option>Dziekanat Studiów Podyplomowych</option>
-            <option>Dziekanat Studiów Stacjonarnych</option>
-            <option>Sekcja Rekrutacji</option>
-          </optgroup>
-          <optgroup label="Katedry i zakłady">
-            <option>Katedra / Samodzielny Zakład — kierownik</option>
-            <option>Katedra / Samodzielny Zakład — pracownik</option>
-            <option>Koordynator przedmiotu</option>
-          </optgroup>
-          <optgroup label="Nauka">
-            <option>Centrum naukowo-badawcze (np. CSRI)</option>
-            <option>Sekcja Badań Naukowych</option>
-            <option>Sekcja Wydawnicza WZ UW</option>
-          </optgroup>
-          <optgroup label="Władze">
-            <option>Władze wydziału / KJD</option>
-          </optgroup>
-          <optgroup label="Inne">
-            <option>MCZ (Międzynarodowe Centrum Zarządzania)</option>
-            <option>Inna jednostka</option>
-          </optgroup>
-        </select>
-      </div>
-      <div class="field" id="jedInnaWrap" style="display:none"><label>Wpisz nazwę jednostki<span class="req">*</span></label><input type="text" id="jedInna"></div>
+      <div class="err" id="err1"></div>
+      <button class="btn" id="btn1" onclick="wyslijKod()">Wyślij kod</button>
     </div>
-    <div id="idSummary">Zgłaszasz jako: <b id="idWho"></b><button class="btn ghost" data-tip="Poprawisz e-mail lub jednostkę" onclick="editId()">Zmień</button></div>
-  </div>
-
-  <!-- MAIN -->
-  <div class="card" id="mainCard">
-    <p class="h">Co chcesz zgłosić?</p>
-    <div class="types">
-      <button class="type" data-t="proces" onclick="pick('proces')"><div class="t"><span class="dot"></span>Co zabiera Ci najwięcej czasu</div><div class="d">Ręczna, powtarzająca się praca: przepisywanie danych, zbieranie arkuszy, pilnowanie terminów. Możesz opisać kilka czynności.</div></button>
-      <button class="type" data-t="brak" onclick="pick('brak')"><div class="t"><span class="dot"></span>Czego mi brakuje / nie widzę</div><div class="d">Informacje, których nie dostajesz na czas albo musisz o nie prosić innych. Możesz wpisać kilka.</div></button>
-      <button class="type" data-t="uwaga" onclick="pick('uwaga')"><div class="t"><span class="dot"></span>Uwagi do prototypu SOWA</div><div class="d">Coś w pokazanej wersji SOWA nie działa albo jest inaczej niż w Twojej codziennej pracy. Możesz zgłosić kilka uwag.</div></button>
-      <button class="type" data-t="korekta" onclick="pick('korekta')"><div class="t"><span class="dot"></span>Czy dobrze opisaliśmy Waszą pracę?</div><div class="d">Lista naszych ustaleń o tym, jak działa wydział — zaznacz, co się zgadza, i popraw, co opisaliśmy źle.</div></button>
-      <button class="type" data-t="dostep" onclick="pick('dostep')"><div class="t"><span class="dot"></span>Kto będzie używał systemu</div><div class="d">Wypełnia kierownik jednostki: ile osób z zespołu ma mieć dostęp i do czego.</div></button>
-      <button class="type" data-t="inne" onclick="pick('inne')"><div class="t"><span class="dot"></span>Inny pomysł lub problem</div><div class="d">Cokolwiek, co nie mieści się w powyższych.</div></button>
-    </div>
-
-    <div id="rodoWrap" style="display:none;margin-top:14px">
-      <div class="rodo" style="margin:0"><span>⚠️</span><span><b>Nie wpisuj</b> w polach poniżej danych osobowych studentów ani pracowników — imion, numerów albumu, kodów chorób, treści zwolnień. Opisz, jak przebiega praca — bez wskazywania konkretnych osób.</span></div>
-    </div>
-
-    <div style="margin-top:18px">
-      <!-- A: PROCES -->
-      <div class="block" id="b-proces">
-        <div class="blockhead"><span class="bar"></span><h3>Co zabiera Ci najwięcej czasu</h3></div>
-        <p style="font-size:14.5px;color:var(--g2);margin:0 0 12px">Chodzi o powtarzalną pracę ręczną, którą mógłby przejąć system. Dobry przykład: <i>„co semestr przepisuję obsadę z arkuszy katedr do planu i do USOS"</i>. Zły przykład: <i>„robię pensum w Excelu"</i> — to narzędzie, nie czynność; napisz, co po kolei robisz. Każda czynność ma osobną kartę, bo każda dostanie osobną decyzję „automatyzujemy / nie".</p>
-        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Czynności: <b id="procCnt" style="color:var(--green)">1</b></div>
-        <div id="procesy">
-          <div class="pomysl">
-            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Czynność 1</div>
-            <div class="field"><label>Nazwa czynności<span class="req">*</span></label><input type="text" data-k="nazwa" data-req="1"></div>
-            <div class="field"><label>Co ją uruchamia<span class="hint">termin, mail, wniosek, początek semestru…</span></label><input type="text" data-k="wyzwalacz"></div>
-            <div class="field"><label>Kroki po kolei<span class="req">*</span><span class="hint">tak jak wygląda to dziś</span></label><textarea data-k="kroki" data-req="1"></textarea></div>
-            <div class="row">
-              <div class="field"><label>Jak często to robisz<span class="req">*</span></label>
-                <select data-k="czestotliwosc" data-req="1"><option value="">— wybierz —</option><option>codziennie</option><option>co tydzień</option><option>co miesiąc</option><option>raz w semestrze</option><option>raz w roku</option><option>nieregularnie</option></select>
-              </div>
-              <div class="field"><label>Ile czasu to zajmuje za każdym razem<span class="req">*</span><span class="hint">np. 2 godziny, pół dnia, 3 dni</span></label><input type="text" data-k="czas" data-req="1"></div>
-            </div>
-            <div class="field"><label>Co jest w tym najbardziej uciążliwe<span class="req">*</span><span class="hint">gdzie powstają błędy, co trzeba robić podwójnie, na co czekasz</span></label><textarea data-k="uciazliwosc" data-req="1"></textarea></div>
-            <details class="more"><summary>Rozwiń szczegóły (opcjonalne)</summary>
-              <div class="row">
-                <div class="field"><label>Skąd bierzesz dane<span class="hint">USOS, mail, arkusz…</span></label><input type="text" data-k="zrodla_danych"></div>
-                <div class="field"><label>Co powstaje i dokąd trafia<span class="hint">i w jakiej formie: plik, mail, wpis</span></label><input type="text" data-k="wynik_dokad"></div>
-              </div>
-              <div class="field"><label>Czym to dziś robisz<span class="hint">np. Excel, USOS, mail, papierowy formularz</span></label><input type="text" data-k="narzedzia"></div>
-              <div class="field"><label>Kto jeszcze uczestniczy<span class="hint">od kogo zależysz, komu przekazujesz</span></label><input type="text" data-k="uczestnicy"></div>
-              <div class="field"><label>Jak powinno to działać, żeby było dobrze<span class="hint">napisz, co by Ci ulżyło — nie tylko co przeszkadza</span></label><textarea data-k="stan_docelowy"></textarea></div>
-            </details>
-            <div class="row">
-              <div class="field" style="margin:0"><label>Jak bardzo to przeszkadza</label>
-                <select data-k="waga"><option value="">— wybierz —</option><option>drobiazg</option><option>utrudnia pracę</option><option>poważnie spowalnia</option><option>blokuje / powoduje błędy</option></select>
-              </div>
-              <div class="field" style="margin:0"><label>Kogo dotyczy</label>
-                <select data-k="zasieg"><option value="">— wybierz —</option><option>tylko mnie</option><option>moja sekcja / katedra</option><option>kilka jednostek</option><option>większość wydziału</option></select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="addbtn" data-tip="Każda pozycja trafi do arkusza jako osobny wiersz" onclick="addItem('procesy','procCnt','Czynność')" style="margin-top:8px">＋ dodaj kolejną czynność</button>
-      </div>
-
-      <!-- B: BRAK -->
-      <div class="block" id="b-brak">
-        <div class="blockhead"><span class="bar"></span><h3>Czego mi brakuje / nie widzę</h3></div>
-        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Pozycji: <b id="brakCnt" style="color:var(--green)">1</b></div>
-        <div id="braki">
-          <div class="pomysl">
-            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Pozycja 1</div>
-            <div class="field"><label>Jakiej informacji brakuje<span class="req">*</span><span class="hint">np. pełne obciążenie pracownika, status IOS studenta, kto ma nieobsadzone grupy</span></label><textarea data-k="informacja" data-req="1"></textarea></div>
-            <div class="field"><label>Gdzie dziś jej szukasz<span class="hint">USOS, mail, arkusz, dzwonię do sekcji…</span></label><input type="text" data-k="gdzie_szukam"></div>
-            <div class="field"><label>Dlaczego to problem<span class="req">*</span></label>
-              <select data-k="problem" data-req="1"><option value="">— wybierz —</option><option>dostaję ją za późno</option><option>rozproszona w wielu miejscach</option><option>niepełna</option><option>nieaktualna</option><option>muszę o nią prosić inną osobę</option></select>
-            </div>
-            <div class="field"><label>Jak byłoby Ci wygodnie ją dostawać<span class="hint">np. jedna tabela w systemie, powiadomienie mailem</span></label><textarea data-k="jak_dostawac"></textarea></div>
-            <div class="row">
-              <div class="field" style="margin:0"><label>Jak bardzo to przeszkadza</label>
-                <select data-k="waga"><option value="">— wybierz —</option><option>drobiazg</option><option>utrudnia pracę</option><option>poważnie spowalnia</option><option>blokuje / powoduje błędy</option></select>
-              </div>
-              <div class="field" style="margin:0"><label>Kogo dotyczy</label>
-                <select data-k="zasieg"><option value="">— wybierz —</option><option>tylko mnie</option><option>moja sekcja / katedra</option><option>kilka jednostek</option><option>większość wydziału</option></select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="addbtn" data-tip="Każda pozycja trafi do arkusza jako osobny wiersz" onclick="addItem('braki','brakCnt','Pozycja')" style="margin-top:8px">＋ dodaj kolejną pozycję</button>
-      </div>
-
-      <!-- C: UWAGI -->
-      <div class="block" id="b-uwaga">
-        <div class="blockhead"><span class="bar"></span><h3>Uwagi do prototypu SOWA</h3></div>
-        <div style="background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:10px 12px;font-size:14.5px;color:var(--g2);margin:0 0 12px">Nie widziałeś jeszcze SOWY? <a id="sowaLink" href="#" target="_blank" rel="noopener" data-tip="Nowa karta — formularz nie zginie" style="color:var(--blue);font-weight:600">Otwórz wersję demonstracyjną</a> (otworzy się w nowej karcie — nic z tego formularza nie zginie). Poklikaj po ekranach, sprawdź swoją codzienną część pracy i wróć tu zapisać, co nie działa albo jest inaczej niż naprawdę. Demo pokazuje dane wszystkich sekcji naraz — w docelowym systemie zobaczysz tylko to, co należy do Twojej roli. <b>Wszystkie dane w demo są fikcyjne.</b></div>
-        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Uwag: <b id="uwagaCnt" style="color:var(--green)">1</b></div>
-        <div id="uwagi">
-          <div class="pomysl">
-            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Uwaga 1</div>
-            <div class="row">
-              <div class="field"><label>Której części SOWA dotyczy<span class="req">*</span></label>
-                <select data-k="czesc_sowa" data-req="1"><option value="">— wybierz —</option><option>Pulpit — dziś do zrobienia</option><option>Obsada zajęć</option><option>Moje zajęcia i pensum</option><option>Pracownicy i prowadzący</option><option>Rezerwacja sal i sesja</option><option>Informacje o studentach (IOS)</option><option>Seminaria i obrony</option><option>Publikacje i dorobek</option><option>Projekty badawcze</option><option>Badania statutowe (BST)</option><option>Nagrody Dziekana</option><option>Dodatki i ocena okresowa</option><option>Onboarding i offboarding</option><option>Pliki i dokumenty (integracja z dyskiem)</option><option>Warstwa wsparcia (podpowiedzi)</option><option>Warstwa AI</option><option>Logowanie i role</option><option>Całość / ogólne</option></select>
-              </div>
-              <div class="field"><label>Typ uwagi<span class="req">*</span></label>
-                <select data-k="typ_uwagi" data-req="1"><option value="">— wybierz —</option><option>błąd</option><option>niezgodność z tym, jak pracujemy</option><option>brakująca funkcja</option><option>propozycja zmiany</option><option>ograniczenie techniczne / integracja / bezpieczeństwo</option><option>inna — opiszę poniżej</option></select>
-              </div>
-            </div>
-            <div class="field"><label>Opis<span class="req">*</span></label><textarea data-k="opis" data-req="1"></textarea></div>
-            <div class="field"><label>Jak ten fragment pracy wygląda dziś naprawdę<span class="hint">pomaga ocenić, czy prototyp trafia w realia</span></label><textarea data-k="jak_jest_dzis"></textarea></div>
-            <div class="field" style="margin:0;max-width:220px"><label>Waga uwagi</label>
-              <select data-k="waga"><option value="">— wybierz —</option><option>drobiazg</option><option>utrudnia pracę</option><option>poważnie spowalnia</option><option>blokuje / powoduje błędy</option></select>
-            </div>
-          </div>
-        </div>
-        <button class="addbtn" data-tip="Każda pozycja trafi do arkusza jako osobny wiersz" onclick="addItem('uwagi','uwagaCnt','Uwaga')" style="margin-top:8px">＋ dodaj kolejną uwagę</button>
-      </div>
-
-      <!-- D: KOREKTA -->
-      <div class="block" id="b-korekta">
-        <div class="blockhead"><span class="bar"></span><h3>Czy dobrze opisaliśmy Waszą pracę?</h3></div>
-        <p style="font-size:14.5px;color:var(--g1);margin:0 0 12px">Przygotowując wersję demonstracyjną, spisaliśmy, jak naszym zdaniem działa wydział. Zanim zaczniemy budować, sprawdzamy to z Wami — każde założenie jest opisane poniżej, niczego nie musisz doczytywać. Zaznacz stanowisko przy punktach, które znasz; resztę oznacz „nie zajmuję się tym" (= nie znam tego tematu; „nie dotyczy" = znam temat, ale u mnie to nie występuje). Wysyłasz wszystko jednym zgłoszeniem.</p>
-        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Zaznaczono: <b id="korCnt" style="color:var(--green)">0</b> z 15</div>
-
-        <div class="fact"><div class="fn">Kto układa obsadę zajęć</div><div class="fd">Zakładamy: obsadę na studiach I i II stopnia układają kierownicy katedr, a na anglojęzycznych i podyplomowych — koordynatorzy przedmiotów.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Karty pensum</div><div class="fd">Zakładamy: karty rozlicza się z zajęć faktycznie zrealizowanych, a w ciągu roku jest 10–20 zmian (choroby, rezygnacje, rozwiązane grupy).</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Godziny spoza USOS</div><div class="fd">Zakładamy: godziny ze szkół doktorskich, zajęć zamawianych, zagranicznych, MCZ, podyplomowych, ogunów (zajęć ogólnouniwersyteckich) i projektów wpisuje sekcja albo deklaruje prowadzący, a deklaracja czeka na weryfikację.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Obniżenia normy pensum</div><div class="fd">Zakładamy: norma bywa obniżana z tytułu projektu badawczego lub pełnionej funkcji i to przesuwa próg, od którego liczą się niedobór i nadgodziny.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Kolizje sal</div><div class="fd">Zakładamy: nakładanie się rezerwacji sal sprawdza się dziś ręcznie w SRS (systemie rezerwacji sal).</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Prowadzący spoza etatu</div><div class="fd">Zakładamy: osoba zewnętrzna przypisana do zajęć wymaga umowy i nadania uprawnień, a kwoty wynagrodzeń zostają w SAP (systemie finansowym), poza nowym systemem.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Kierownik przypisuje zajęcia sobie</div><div class="fd">Zakładamy: gdy kierownik katedry przypisuje zajęcia samemu sobie, dziś nikt formalnie nie zatwierdza tego osobno.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Przedmiot na dwóch kierunkach</div><div class="fd">Zakładamy: ten sam przedmiot bywa w USOS wykazany dwukrotnie dla dwóch kierunków, przez co godziny liczą się podwójnie.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Dane osobowe studentów</div><div class="fd">Zakładamy: w codziennej pracy dane osobowe studentów są potrzebne tylko w USOS i APD (archiwum prac dyplomowych) — poza nimi wystarczają dane zajęć i grup, bez nazwisk studentów.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Publikacje i sprawozdania BST</div><div class="fd">Zakładamy: dorobek publikacyjny i sprawozdania BST zbiera się dziś mailami i arkuszami, a te same dane wpisuje się osobno do kilku sprawozdań.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Nowy pracownik — konta i dostępy</div><div class="fd">Zakładamy: przy zatrudnieniu nowej osoby konta i dostępy (USOS, poczta, dyski sieciowe) załatwia się osobnymi zgłoszeniami do różnych osób.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Terminy i przypomnienia</div><div class="fd">Zakładamy: o terminach (karty pensum, sprawozdania, obsada) przypomina się dziś mailami i telefonami — nie ma jednego miejsca, w którym widać, co i na kiedy masz do zrobienia.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Przekazywanie spraw między jednostkami</div><div class="fd">Zakładamy: sprawy między sekcjami i katedrami przekazuje się mailem albo osobiście i po drodze nie widać, u kogo sprawa aktualnie czeka.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Wzory dokumentów i wytyczne</div><div class="fd">Zakładamy: aktualnych wzorów dokumentów i wytycznych szuka się w starych mailach albo dopytuje współpracowników — nie ma jednego pewnego źródła.</div><div class="fc"><button onclick="setFact(this,'ok')" data-tip="Zgadza się z tym, jak pracuję">potwierdzam</button><button onclick="setFact(this,'fix')" data-tip="Opiszesz niżej, jak jest naprawdę">koryguję</button><button onclick="setFact(this,'na')" data-tip="Nie znam tego tematu">nie zajmuję się tym</button><button onclick="setFact(this,'nd')" data-tip="Znam temat, ale u mnie to nie występuje">nie dotyczy</button></div><div class="ft"><input type="text" placeholder="jak jest naprawdę"></div></div>
-        <div class="fact"><div class="fn">Coś jeszcze działa inaczej?</div><div class="fd">Jeśli w Twojej pracy jest ustalenie, którego tu nie ma, a system powinien je znać — dopisz je.</div><div class="fc"><button onclick="setFact(this,'fix')">chcę dopisać</button></div><div class="ft"><input type="text" placeholder="opisz, jak to działa naprawdę"></div></div>
-      </div>
-
-      <!-- E: DOSTEP -->
-      <div class="block" id="b-dostep">
-        <div class="blockhead"><span class="bar"></span><h3>Kto będzie używał systemu</h3></div>
-        <p style="font-size:14.5px;color:var(--g1);margin:0 0 6px">Wypełnia kierownik jednostki — najlepiej jedno zgłoszenie na jednostkę, ze wszystkimi rolami naraz; uzupełnienie możesz dosłać później. Dla każdej roli w zespole podaj, ile osób ją pełni i czy mają wpisywać dane, czy tylko je przeglądać. Dzięki temu ustalimy, kto dostanie konto i z jakimi uprawnieniami.</p>
-        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Ról: <b id="rolaCnt" style="color:var(--green)">1</b></div>
-        <div id="role">
-          <div class="rola">
-            <div class="row">
-              <div class="field" style="margin:0"><label>Rola / funkcja<span class="req">*</span><span class="hint">np. kierownik katedry, referent ds. pensum</span></label><input type="text" data-k="rola" data-req="1"></div>
-              <div class="field" style="margin:0"><label>Poziom dostępu<span class="req">*</span></label><select data-k="poziom" data-req="1"><option value="">— wybierz —</option><option value="edycja">wprowadza dane (edycja)</option><option value="podglad">tylko podgląd</option></select></div>
-            </div>
-            <div class="field" style="margin:8px 0 0;max-width:220px"><label>Ile osób w tej roli<span class="req">*</span></label><input type="number" min="1" data-k="liczba_osob" data-req="1"></div>
-          </div>
-        </div>
-        <button class="addbtn" data-tip="Każda pozycja trafi do arkusza jako osobny wiersz" onclick="addItem('role','rolaCnt',null)" style="margin-top:8px">＋ dodaj rolę</button>
-        <div class="field" style="margin-top:16px"><label>Osoby zewnętrzne wymagające dostępu<span class="hint">spoza etatu WZ; kto i po co — jeśli dotyczy</span></label><input type="text" id="osobyZew"></div>
-      </div>
-
-      <!-- F: INNE -->
-      <div class="block" id="b-inne">
-        <div class="blockhead"><span class="bar"></span><h3>Inne pomysły lub problemy</h3></div>
-        <div style="font-size:15px;color:var(--g2);font-weight:500;margin:0 0 12px">Pomysłów: <b id="pomCnt" style="color:var(--green)">1</b></div>
-        <div id="pomysly">
-          <div class="pomysl">
-            <div class="pnum" style="font-size:14px;font-weight:600;color:var(--blue);margin-bottom:8px">Pomysł 1</div>
-            <div class="field"><label>Czego dotyczy<span class="hint">jednym zdaniem</span></label><input type="text" data-k="czego_dotyczy"></div>
-            <div class="field"><label>Opis<span class="req">*</span></label><textarea data-k="opis" data-req="1"></textarea></div>
-            <div class="field" style="margin:0;max-width:220px"><label>Jak istotne<span class="hint">waga tego pomysłu</span></label><select data-k="waga"><option value="">— wybierz —</option><option>drobiazg</option><option>przydatne</option><option>ważne</option><option>pilne</option></select></div>
-          </div>
-        </div>
-        <button class="addbtn" data-tip="Każda pozycja trafi do arkusza jako osobny wiersz" onclick="addItem('pomysly','pomCnt','Pomysł')" style="margin-top:8px">＋ dodaj kolejny pomysł</button>
-      </div>
-
-      <div class="actions" id="actionsRow" style="display:none;background:var(--bg2);border:1px solid var(--bd2);border-radius:var(--r);padding:14px 16px">
-        <button class="btn pri" id="sendBtn" data-tip="Najpierw pokażemy podsumowanie do potwierdzenia" onclick="send()" style="padding:13px 34px;font-size:18px">Wyślij</button>
-        <span style="font-size:15px;color:var(--g2);flex:1;min-width:220px">Wysyłasz, kiedy chcesz: od razu jedną zakładkę albo najpierw wypełnij kilka i wyślij na końcu — nic po drodze nie zginie.</span>
-        <span class="counter" id="cnt"></span>
-        <div class="senderr" id="sendErr"></div>
-        <div id="confirmBox" style="display:none;width:100%;background:var(--bg3);border:1px solid #C5D5EE;border-radius:var(--r);padding:10px 12px;font-size:15px;color:var(--ink)">
-          <div id="confirmTxt"></div>
-          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
-            <button class="btn pri" onclick="doSend()" style="padding:7px 14px;font-size:15px">Tak, wyślij</button>
-            <button class="btn pri" id="sendAllBtn" onclick="doSendAll()" style="display:none;padding:7px 14px;font-size:15px;background:var(--green)"></button>
-            <button class="btn ghost" onclick="hideConfirm()" style="padding:7px 14px;font-size:15px">Wróć, jeszcze sprawdzę</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DONE -->
-    <div class="done" id="done">
-      <div class="ok">✓</div>
-      <h3>Zgłoszenie zapisane</h3>
-      <p>Dziękujemy. Możesz dodać kolejne — dane zgłaszającego zostają wypełnione.</p>
-      <div id="doneWarn" style="display:none;background:var(--amber-bg);color:var(--amber);border-radius:var(--r);padding:9px 12px;font-size:14.5px;margin:0 auto 14px;max-width:520px;text-align:left"></div>
-      <div class="actions">
-        <button class="btn pri" onclick="again()">Dodaj kolejne zgłoszenie</button>
-        <button class="btn ghost" data-tip="Kończy pracę i czyści formularz — niewysłane wpisy przepadną" onclick="finish()">Zakończ</button>
-      </div>
-      <div class="counter" style="margin-top:14px" id="cnt2"></div>
+    <div id="step2">
+      <label for="kod">Kod z e-maila (6 cyfr)</label>
+      <input type="text" id="kod" inputmode="numeric" maxlength="6" placeholder="123456" autocomplete="one-time-code">
+      <div class="err" id="err2"></div>
+      <button class="btn" id="btn2" onclick="zaloguj()">Zaloguj</button>
+      <div class="hint">Kod ważny 10 minut. <button class="linkbtn" id="resend" onclick="wyslijKod(true)" disabled>Wyślij kod ponownie</button> <span id="resendS"></span></div>
     </div>
   </div>
-
-  <div class="note">SOWA WZ · kanał zgłoszeń · Wydział Zarządzania UW</div>
+  <div id="loader">Wczytuję…</div>
 </div>
-
 <script>
   // ── konfiguracja: uzupełnić po wdrożeniu ─────────────────────────
-  const ENDPOINT = "https://script.google.com/macros/s/AKfycbwdyyi8oRbz8Dq4iDgRFIPx2YajPjmgYv39tapED9s3Fl0WXPJZpymqneJjd_ing2l9_Q/exec";
-  const TOKEN = "SOWA-WZ-XgNleo1sMEYWUEOaRCRciJxU";
-  const LINK_SOWA = "https://nawrockipiotr.github.io/sowa-wz/demo/";
-  const DOMENA = "uw.edu.pl"; // walidacja: kazda koncowka uw.edu.pl
-  const DOMENA_PODPOWIEDZ = "wz.uw.edu.pl";
-  const WERSJA_PROTOTYPU = "v17";
-  const TERMIN = "2026-10-10"; // ostatni dzień przyjmowania zgłoszeń (włącznie)
-  const KONTAKT = "pnawrocki@wz.uw.edu.pl"; // adres zespołu SOWA WZ (widoczny po zamknięciu zbiórki)
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbwdyyi8oRbz8Dq4iDgRFIPx2YajPjmgYv39tapED9s3Fl0WXPJZpymqneJjd_ing2l9_Q/exec";   // ten sam web app co zgłoszenia
+  const TOKEN = "SOWA-WZ-XgNleo1sMEYWUEOaRCRciJxU";         // ten sam co w apce
+  const STRONA = "formularz";           // wariant demo: "demo"
   // ─────────────────────────────────────────────────────────────────
-
-  document.getElementById('sowaLink').href = LINK_SOWA;
-  document.getElementById('sowaLeadLink').href = LINK_SOWA;
-
-  // kanoniczne wartości: payload zawsze po polsku, niezależnie od języka UI
-  document.querySelectorAll('select option').forEach(o=>{if(!o.hasAttribute('value'))o.setAttribute('value',o.textContent);});
-  document.querySelectorAll('#b-korekta .fact .fn').forEach(f=>f.dataset.punkt=f.textContent);
-
-  // zamknięcie zbiórki po terminie
-  if(new Date() > new Date(TERMIN+'T23:59:59')){
-    document.getElementById('idCard').style.display='none';
-    document.querySelector('.lead p').textContent='Zbiórka zgłoszeń do SOWY — Systemu Obsady, Wsparcia i Alokacji WZ — została zakończona. Dziękujemy za wszystkie nadesłane uwagi.';
-    document.getElementById('mainCard').innerHTML='<p class="h">Zbiórka zakończona</p><p style="font-size:16px;color:var(--g2);margin:0">Zbieranie zgłoszeń zakończyło się '+new Date(TERMIN).toLocaleDateString('pl-PL',{day:'numeric',month:'long',year:'numeric'})+'. Dziękujemy wszystkim, którzy podzielili się uwagami — pracujemy nad ich analizą. Pytania: <a href="mailto:'+KONTAKT+'">'+KONTAKT+'</a>.</p>';
-    document.querySelector('.lead .term').textContent='Zbiórka zgłoszeń zakończona';
+  async function api(body){
+    const r = await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body),redirect:"follow"});
+    return r.json();
   }
-
-  let sent=0, current=null;
-  const sentTypes=new Set();
-  const HDR='Co chcesz zgłosić?';
-  const TYP = {proces:'czynnosci', brak:'braki', uwaga:'uwagi', korekta:'ustalenia', dostep:'dostep', inne:'pomysly'};
-  const ITEMS = {proces:'procesy', brak:'braki', uwaga:'uwagi', dostep:'role', inne:'pomysly'};
-
-  function emailSuf(){
-    const e=document.getElementById('email');
-    document.getElementById('emailSuf').style.display = e.value.includes('@') ? 'none' : 'block';
+  function sesjaWazna(){
+    try{
+      const s = JSON.parse(sessionStorage.getItem("wz_sesja")||"null");
+      if(!s || !s.token) return null;
+      const dane = s.token.slice(0, s.token.lastIndexOf("."));
+      const exp = parseInt(dane.split("|")[1], 10);
+      return (exp > Math.floor(Date.now()/1000)) ? s : null;
+    }catch(e){ return null; }
   }
-  function emailAuto(){
-    const e=document.getElementById('email'), v=e.value.trim();
-    if(v && !v.includes('@')) e.value=v+'@'+DOMENA_PODPOWIEDZ;
-    emailSuf();
+  const DOMENA = "wz.uw.edu.pl";
+  function emSuf(){
+    const e=document.getElementById('em');
+    document.getElementById('emSufik').style.display = e.value.includes('@') ? 'none' : 'block';
   }
-  function jedChange(){
-    const inna = document.getElementById('jednostka').value==='Inna jednostka';
-    document.getElementById('jedInnaWrap').style.display = inna?'block':'none';
+  function emAuto(){
+    const e=document.getElementById('em'), v=e.value.trim();
+    if(v && !v.includes('@')) e.value=v+'@'+DOMENA;
+    emSuf();
   }
-  function jedName(){
-    const v=document.getElementById('jednostka').value;
-    if(v==='Inna jednostka' && document.getElementById('jedInna').value.trim()) return document.getElementById('jedInna').value.trim();
-    return v;
-  }
-  function clearBlock(typ){
-    if(!typ) return;
-    if(typ==='korekta'){
-      document.querySelectorAll('#b-korekta .fc button').forEach(b=>b.className='');
-      document.querySelectorAll('#b-korekta .ft').forEach(f=>{f.classList.remove('on');const i=f.querySelector('input');if(i)i.value='';});
-      const kc=document.getElementById('korCnt'); if(kc) kc.textContent='0';
-      return;
+  function err(n,msg){const e=document.getElementById('err'+n);e.textContent=msg||'';e.classList.toggle('on',!!msg);}
+  let emailVal='', timer=null;
+  async function wyslijKod(ponownie){
+    emAuto();
+    const em=document.getElementById('em').value.trim().toLowerCase();
+    if(!ponownie){
+      if(!/^[^\s@]+@[^\s@]+$/.test(em)){err(1,'Podaj poprawny adres e-mail.');return;}
+      if(!em.endsWith('@'+DOMENA)){err(1,'Podaj służbowy adres wydziałowy (…@'+DOMENA+')');return;}
+      emailVal=em;
     }
-    const box=document.getElementById(ITEMS[typ]); if(!box) return;
-    [...box.children].forEach((el,i)=>{if(i>0)el.remove()});
-    box.querySelectorAll('input,textarea').forEach(e=>{e.value='';e.classList.remove('invalid')});
-    box.querySelectorAll('select').forEach(e=>{e.selectedIndex=0;e.classList.remove('invalid')});
-    const MAPC={proces:['procCnt','Czynność'],brak:['brakCnt','Pozycja'],uwaga:['uwagaCnt','Uwaga'],dostep:['rolaCnt',null],inne:['pomCnt','Pomysł']};
-    const [cid,pfx]=MAPC[typ];
-    const n=box.firstElementChild&&box.firstElementChild.querySelector('.pnum');
-    if(n&&pfx) n.textContent=t(pfx)+' 1';
-    const c=document.getElementById(cid); if(c) c.textContent='1';
-    if(typ==='dostep') document.getElementById('osobyZew').value='';
-    document.querySelectorAll('#b-'+typ+' details.more').forEach(d=>d.removeAttribute('open'));
+    err(1);err(2);
+    const b1=document.getElementById('btn1');
+    b1.disabled=true;b1.textContent='Wysyłam…';
+    try{
+      const res=await api({akcja:'wyslij_kod',token:TOKEN,email:emailVal});
+      if(res&&res.ok){
+        document.getElementById('step1').style.display='none';
+        document.getElementById('step2').style.display='block';
+        document.getElementById('kod').focus();
+        startResend();
+      }else err(ponownie?2:1,(res&&res.error)||'Nie udało się wysłać kodu — spróbuj ponownie.');
+    }catch(e){err(ponownie?2:1,'Nie udało się wysłać kodu — sprawdź połączenie.');}
+    b1.disabled=false;b1.textContent='Wyślij kod';
   }
-  function clearBlocks(){
-    document.querySelectorAll('.block input, .block textarea').forEach(e=>{if(e.type==='checkbox'){e.checked=false}else{e.value=''}});
-    document.querySelectorAll('.block select').forEach(e=>e.selectedIndex=0);
-    document.querySelectorAll('.block .invalid').forEach(e=>e.classList.remove('invalid'));
-    document.querySelectorAll('#b-korekta .fc button').forEach(b=>b.className='');
-    document.querySelectorAll('#b-korekta .ft').forEach(f=>f.classList.remove('on'));
-    const kc=document.getElementById('korCnt'); if(kc) kc.textContent='0';
-    [['pomysly','pomCnt','Pomysł'],['role','rolaCnt',null],['braki','brakCnt','Pozycja'],['uwagi','uwagaCnt','Uwaga'],['procesy','procCnt','Czynność']].forEach(([bid,cid,pfx])=>{
-      const box=document.getElementById(bid); if(!box) return;
-      [...box.children].forEach((el,i)=>{if(i>0)el.remove()});
-      const n=box.firstElementChild&&box.firstElementChild.querySelector('.pnum');
-      if(n&&pfx) n.textContent=t(pfx)+' 1';
-      const c=document.getElementById(cid); if(c) c.textContent='1';
-    });
-    document.getElementById('osobyZew').value='';
-    document.querySelectorAll('details.more').forEach(d=>d.removeAttribute('open'));
-    hideErr();
+  function startResend(){
+    const r=document.getElementById('resend'),s=document.getElementById('resendS');
+    r.disabled=true;let n=30;s.textContent='(za '+n+' s)';
+    clearInterval(timer);
+    timer=setInterval(()=>{n--;if(n<=0){clearInterval(timer);r.disabled=false;s.textContent='';}else s.textContent='(za '+n+' s)';},1000);
   }
-  function pick(typ){
-    current=typ;
-    document.querySelector('#mainCard .h').textContent=t(HDR);
-    document.querySelectorAll('.type').forEach(el=>el.classList.toggle('on',el.dataset.t===typ));
-    document.querySelectorAll('.block').forEach(el=>el.classList.remove('on'));
-    document.getElementById('b-'+typ).classList.add('on');
-    document.getElementById('rodoWrap').style.display='block';
-    document.getElementById('actionsRow').style.display='flex';
-    hideErr(); hideConfirm(); markPend();
-  }
-  function updCnt(){
-    const s = sent===0?'':t('wysłano w tej sesji:')+' <b>'+sent+'</b>';
-    document.getElementById('cnt').innerHTML=s;
-    document.getElementById('cnt2').innerHTML=s;
-  }
-  function collapseId(){
-    const who=(document.getElementById('email').value.trim()||'—')+' · '+(jedName()||t('jednostka?'));
-    document.getElementById('idWho').textContent=who;
-    document.getElementById('idForm').style.display='none';
-    document.getElementById('idSummary').style.display='flex';
-  }
-  function editId(){document.getElementById('idForm').style.display='block';document.getElementById('idSummary').style.display='none';}
-  function hideAll(){
-    document.querySelectorAll('.type').forEach(el=>el.classList.remove('on'));
-    document.querySelectorAll('.block').forEach(el=>el.classList.remove('on'));
-    document.getElementById('actionsRow').style.display='none';
-    document.getElementById('rodoWrap').style.display='none';
-  }
-  function showErr(msg){const e=document.getElementById('sendErr');e.textContent=msg;e.classList.add('on');}
-  function hideErr(){document.getElementById('sendErr').classList.remove('on');}
-  function markBad(el){
-    el.classList.add('invalid');
-    el.addEventListener('input',()=>el.classList.remove('invalid'),{once:true});
-    el.addEventListener('change',()=>el.classList.remove('invalid'),{once:true});
-  }
-  function focusBad(el){
-    const d=el.closest('details.more'); if(d) d.setAttribute('open','');
-    const top=el.getBoundingClientRect().top + window.scrollY - 140;
-    window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
-    el.focus({preventScroll:true});
-  }
-  function validate(){
-    document.querySelectorAll('.invalid').forEach(e=>e.classList.remove('invalid'));
-    let first=null;
-    const bad=el=>{markBad(el); if(!first) first=el;};
-    // metryczka
-    const email=document.getElementById('email'), jed=document.getElementById('jednostka'), jedInna=document.getElementById('jedInna');
-    const em=email.value.trim().toLowerCase();
-    if(!em || !/^[^\s@]+@([a-z0-9-]+\.)*uw\.edu\.pl$/.test(em)){
-      bad(email);
-      if(em) showErr(t('Podaj sluzbowy adres uczelniany')+' (…@uw.edu.pl)');
-    }
-    if(!jed.value) bad(jed);
-    else if(jed.value==='Inna jednostka' && !jedInna.value.trim()) bad(jedInna);
-    if(first && document.getElementById('idForm').style.display==='none') editId();
-    // pozycje aktywnego bloku
-    if(current==='korekta'){
-      let any=false;
-      document.querySelectorAll('#b-korekta .fact').forEach(f=>{
-        const sel=f.querySelector('.fc button[class*=sel-]');
-        if(!sel) return;
-        any=true;
-        if(sel.classList.contains('sel-fix')){
-          const inp=f.querySelector('.ft input');
-          if(!inp.value.trim()) bad(inp);
-        }
-      });
-      if(!any){showErr(t('Zaznacz stanowisko przy co najmniej jednym punkcie.')); if(!first) return false;}
-    }else{
-      const items=[...document.getElementById(ITEMS[current]).children];
-      const active=items.filter(touched);
-      if(!active.length){
-        showErr(t('Wypełnij co najmniej jedną pozycję.'));
-        items[0].querySelectorAll('[data-req]').forEach(el=>bad(el));
-      }else{
-        active.forEach(it=>it.querySelectorAll('[data-req]').forEach(el=>{
-          if(!el.value || !String(el.value).trim()) bad(el);
-          else if(el.type==='number' && Number(el.value)<1) bad(el);
-        }));
+  async function zaloguj(){
+    const kod=document.getElementById('kod').value.trim();
+    if(!/^\d{6}$/.test(kod)){err(2,'Wpisz 6-cyfrowy kod z e-maila.');return;}
+    err(2);
+    const b2=document.getElementById('btn2');
+    b2.disabled=true;b2.textContent='Sprawdzam…';
+    try{
+      const res=await api({akcja:'sprawdz_kod',email:emailVal,kod:kod});
+      if(res&&res.ok&&res.token){
+        sessionStorage.setItem('wz_sesja',JSON.stringify({token:res.token,email:res.email}));
+        await ladujTresc();
+        return;
       }
-    }
-    if(first){
-      if(!document.getElementById('sendErr').classList.contains('on')) showErr(t('Uzupełnij zaznaczone pola.'));
-      focusBad(first);
-      return false;
-    }
-    hideErr();
-    return true;
+      err(2,(res&&res.error)||'Kod nieprawidłowy albo wygasł — wyślij nowy.');
+    }catch(e){err(2,'Nie udało się sprawdzić kodu — sprawdź połączenie.');}
+    b2.disabled=false;b2.textContent='Zaloguj';
   }
-  function collect(){
-    const payload={
-      token:TOKEN,
-      imie_nazwisko:document.getElementById('email').value.trim().split('@')[0],
-      email:document.getElementById('email').value.trim(),
-      jednostka:jedName(),
-      typ:TYP[current],
-      pozycje:[]
-    };
-    if(current==='korekta'){
-      document.querySelectorAll('#b-korekta .fact').forEach(f=>{
-        const sel=f.querySelector('.fc button[class*=sel-]');
-        if(!sel) return;
-        const decyzja=sel.classList.contains('sel-ok')?'potwierdzam':sel.classList.contains('sel-fix')?'koryguje':sel.classList.contains('sel-nd')?'nie_dotyczy':'nie_moja_sekcja';
-        const poz={punkt:f.querySelector('.fn').dataset.punkt, decyzja:decyzja};
-        if(decyzja==='koryguje') poz.tresc=f.querySelector('.ft input').value.trim();
-        payload.pozycje.push(poz);
-      });
-    }else{
-      document.querySelectorAll('#'+ITEMS[current]+' > *').forEach(item=>{
-        if(!touched(item)) return;
-        const poz={};
-        item.querySelectorAll('[data-k]').forEach(el=>{poz[el.dataset.k]=String(el.value).trim();});
-        if(current==='uwaga') poz.wersja_prototypu=WERSJA_PROTOTYPU;
-        payload.pozycje.push(poz);
-      });
-      if(current==='dostep') payload.osoby_zewnetrzne=document.getElementById('osobyZew').value.trim();
-    }
-    return payload;
-  }
-  function hasData(typ){
-    if(typ==='korekta') return !!document.querySelector('#b-korekta .fc button[class*=sel-]');
-    return [...document.getElementById(ITEMS[typ]).children].some(touched) || (typ==='dostep' && !!document.getElementById('osobyZew').value.trim());
-  }
-  function unsentOthers(){return Object.keys(TYP).filter(k=>k!==current && hasData(k));}
-  function markPend(){document.querySelectorAll('.type').forEach(el=>{
-    const t2=el.dataset.t, dane=hasData(t2);
-    const pend=dane && t2!==current, wyslane=sentTypes.has(t2) && !dane;
-    el.classList.toggle('pend', pend);
-    el.classList.toggle('sent', wyslane);
-    if(pend) el.setAttribute('data-tip', t('Masz tu niewysłane wpisy'));
-    else if(wyslane) el.setAttribute('data-tip', t('Wysłane w tej sesji'));
-    else el.removeAttribute('data-tip');
-  });}
-  function ileTyp(typ){
-    if(typ==='korekta') return document.querySelectorAll('#b-korekta .fc button[class*=sel-]').length;
-    return [...document.getElementById(ITEMS[typ]).children].filter(touched).length;
-  }
-  function nazwy(list){return list.map(k=>'„'+t(TYTUL[k])+'” ('+ileTyp(k)+')').join(', ');}
-  const TYTUL={proces:'Co zabiera Ci najwięcej czasu',brak:'Czego mi brakuje / nie widzę',uwaga:'Uwagi do prototypu SOWA',korekta:'Czy dobrze opisaliśmy Waszą pracę?',dostep:'Kto będzie używał systemu',inne:'Inny pomysł lub problem'};
-  function send(){
-    if(!validate()) return;
-    const inne=unsentOthers();
-    let html='<div style="font-size:13.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--g1);margin-bottom:6px">'+t('Sprawdź przed wysłaniem')+'</div>';
-    [[current,true],...inne.map(k=>[k,false])].forEach(([k,act])=>{
-      html+='<div style="display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px dashed var(--bd2)">'
-        +'<span style="width:9px;height:9px;border-radius:999px;flex:none;background:'+(act?'var(--blue)':'#E8B33A')+'"></span>'
-        +'<span style="flex:1;font-weight:'+(act?'600':'400')+'">'+t(TYTUL[k])+'</span>'
-        +'<span style="color:var(--g1);font-size:14.5px;white-space:nowrap">'+t('pozycji:')+' '+ileTyp(k)+'</span>'
-        +(act?'<span style="font-size:13px;font-weight:600;color:var(--blue);background:var(--bg3);padding:2px 8px;border-radius:999px">'+t('ta zakładka')+'</span>':'<span style="font-size:13px;font-weight:600;color:var(--amber);background:var(--amber-bg);padding:2px 8px;border-radius:999px">'+t('niewysłane')+'</span>')
-        +'</div>';
-    });
-    if(inne.length) html+='<div style="font-size:14px;color:var(--g1);margin-top:8px">'+t('„Tak, wyślij” = tylko otwarta zakładka. „Wyślij wszystkie” = wszystko z tej listy.')+'</div>';
-    document.getElementById('confirmTxt').innerHTML=html;
-    const ab=document.getElementById('sendAllBtn');
-    ab.style.display=inne.length?'inline-block':'none';
-    if(inne.length) ab.textContent=t('Wyślij wszystkie wypełnione')+' ('+(inne.length+1)+')';
-    document.getElementById('confirmBox').style.display='block';
-    document.getElementById('sendBtn').disabled=true;
-  }
-  function hideConfirm(){document.getElementById('confirmBox').style.display='none';document.getElementById('sendBtn').disabled=false;}
-  async function doSend(){
-    hideConfirm();
-    if(!validate()) return;
-    const btn=document.getElementById('sendBtn');
-    btn.disabled=true; btn.textContent=t('Wysyłam…'); hideErr();
+  async function ladujTresc(){
+    const s=sesjaWazna();
+    if(!s) return pokazLogowanie();
+    document.getElementById('loginCard').style.display='none';
+    document.getElementById('loader').style.display='block';
     try{
-      const r=await fetch(ENDPOINT,{
-        method:"POST",
-        headers:{"Content-Type":"text/plain;charset=utf-8"},
-        body:JSON.stringify(collect()),
-        redirect:"follow"
-      });
-      const res=await r.json();
-      if(res && res.ok){
-        sent++; sentTypes.add(current); clearBlock(current); collapseId(); updCnt(); hideAll();
-        document.querySelector('#mainCard .h').style.display='none';
-        document.querySelector('#mainCard .types').style.display='none';
-        document.getElementById('done').classList.add('on');
-        const dw=document.getElementById('doneWarn'), inne=unsentOthers();
-        if(inne.length){dw.textContent=t('Masz jeszcze niewysłane wpisy w:')+' '+nazwy(inne)+'. '+t('Kliknij „Dodaj kolejne zgłoszenie”, żeby je wysłać.');dw.style.display='block';}
-        else dw.style.display='none';
-      }else{
-        showErr(t('Nie udało się wysłać — spróbuj ponownie')+(res&&res.error?' ('+res.error+')':''));
-      }
-    }catch(err){
-      showErr(t('Nie udało się wysłać — spróbuj ponownie'));
-    }finally{
-      btn.disabled=false; btn.textContent=t('Wyślij');
-    }
+      const res=await api({akcja:'tresc',strona:STRONA,token_sesji:s.token});
+      if(!res||!res.ok||!res.html) return pokazLogowanie();
+      const f=document.createElement('iframe');
+      f.setAttribute('srcdoc',res.html);
+      f.style.cssText='position:fixed;inset:0;width:100%;height:100%;border:0';
+      document.body.replaceChildren(f);
+      const wy=document.createElement('button');wy.textContent='Wyloguj';
+      wy.style.cssText='position:fixed;top:8px;right:10px;z-index:9;font:600 13px/1.2 \'IBM Plex Sans\',sans-serif;background:rgba(28,39,64,.85);color:#fff;border:0;border-radius:6px;padding:7px 11px;cursor:pointer';
+      wy.onclick=function(){sessionStorage.removeItem('wz_sesja');location.reload();};
+      document.body.appendChild(wy);
+    }catch(e){pokazLogowanie();}
   }
-  async function doSendAll(){
-    hideConfirm();
-    const order=[current,...unsentOthers()];
-    for(const typ of order){ pick(typ); if(!validate()) return; }
-    const btn=document.getElementById('sendBtn');
-    btn.disabled=true; btn.textContent=t('Wysyłam…'); hideErr();
-    try{
-      for(const typ of order){
-        current=typ;
-        const r=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(collect()),redirect:"follow"});
-        const res=await r.json();
-        if(!(res&&res.ok)){ pick(typ); showErr(t('Nie udało się wysłać — spróbuj ponownie')+(res&&res.error?' ('+res.error+')':'')); return; }
-        sent++; sentTypes.add(typ); clearBlock(typ);
-      }
-      collapseId(); updCnt(); hideAll();
-      document.querySelector('#mainCard .h').style.display='none';
-      document.querySelector('#mainCard .types').style.display='none';
-      document.getElementById('done').classList.add('on');
-      document.getElementById('doneWarn').style.display='none';
-    }catch(err){
-      showErr(t('Nie udało się wysłać — spróbuj ponownie'));
-    }finally{
-      btn.disabled=false; btn.textContent=t('Wyślij');
-    }
+  function pokazLogowanie(){
+    document.getElementById('loader').style.display='none';
+    document.getElementById('loginCard').style.display='block';
+    document.getElementById('step1').style.display='block';
+    document.getElementById('step2').style.display='none';
   }
-  function again(){
-    document.getElementById('done').classList.remove('on');
-    document.getElementById('doneWarn').style.display='none';
-    finish._armed=false;
-    const h=document.querySelector('#mainCard .h');
-    h.style.display='block'; h.textContent=t(HDR);
-    document.querySelector('#mainCard .types').style.display='grid';
-    if(current) pick(current);
-    updCnt();
-  }
-  function setFact(btn,state){
-    const cls = state==='ok'?'sel-ok':state==='fix'?'sel-fix':state==='nd'?'sel-nd':'sel-na';
-    const fc=btn.parentElement;
-    const wasSelected = btn.className===cls;
-    fc.querySelectorAll('button').forEach(b=>b.className='');
-    if(!wasSelected) btn.className=cls;
-    fc.parentElement.querySelector('.ft').classList.toggle('on', !wasSelected && state==='fix');
-    const n=document.querySelectorAll('#b-korekta .fc button.sel-ok, #b-korekta .fc button.sel-fix, #b-korekta .fc button.sel-na, #b-korekta .fc button.sel-nd').length;
-    const c=document.getElementById('korCnt'); if(c) c.textContent=n;
-  }
-  function addItem(bid,cid,pfx){
-    const box=document.getElementById(bid);
-    const c=box.firstElementChild.cloneNode(true);
-    c.querySelectorAll('input,textarea').forEach(e=>{if(e.type==='checkbox'){e.checked=false}else{e.value=''};e.classList.remove('invalid')});
-    c.querySelectorAll('select').forEach(e=>{e.selectedIndex=0;e.classList.remove('invalid')});
-    box.appendChild(c);
-    const del=document.createElement('button');
-    del.type='button'; del.className='delbtn'; del.textContent=t('usuń'); del.setAttribute('data-tip',t('Usuwa tę pozycję'));
-    del.onclick=()=>{c.remove(); renum(bid,cid,pfx);};
-    c.prepend(del);
-    if(!c.querySelector('.pnum')) c.style.paddingTop='36px';
-    if(pfx)[...box.children].forEach((el,i)=>{const n=el.querySelector('.pnum'); if(n)n.textContent=t(pfx)+' '+(i+1)});
-    document.getElementById(cid).textContent=box.children.length;
-  }
-  function renum(bid,cid,pfx){
-    const box=document.getElementById(bid);
-    if(pfx)[...box.children].forEach((el,i)=>{const n=el.querySelector('.pnum'); if(n)n.textContent=t(pfx)+' '+(i+1)});
-    document.getElementById(cid).textContent=box.children.length;
-  }
-  function t(k){return k;}
-  function touched(it){return [...it.querySelectorAll('input,textarea,select')].some(e=>String(e.value).trim());}
-  function hoot(){
-    if(hoot._busy) return; hoot._busy=true;
-    const l=document.getElementById('sowaLogo');
-    l.classList.remove('mruga'); void l.offsetWidth; l.classList.add('mruga');
-    // pohukiwanie: nagranie sowy (jak w SOWie)
-    try{
-      const a=hoot._audio||(hoot._audio=new Audio('owl.mp3'));
-      a.currentTime=0; a.volume=0.6;
-      a.play().catch(()=>hootTony());
-    }catch(e){ hootTony(); }
-    const b=document.getElementById('hooBubble');
-    b.style.display='none'; void b.offsetWidth; b.style.display='block';
-    setTimeout(()=>{ b.style.display='none'; hoot._busy=false; },1750);
-  }
-  function hootTony(){
-    try{
-      const ctx=hootTony._ctx||(hootTony._ctx=new (window.AudioContext||window.webkitAudioContext)());
-      if(ctx.state==='suspended') ctx.resume();
-      const now=ctx.currentTime;
-      [[520,now,0.18],[430,now+0.22,0.3]].forEach(([f,t0,d])=>{
-        const o=ctx.createOscillator(),g=ctx.createGain();
-        o.type='sine'; o.frequency.setValueAtTime(f,t0); o.frequency.exponentialRampToValueAtTime(f*0.82,t0+d);
-        g.gain.setValueAtTime(0.0001,t0); g.gain.exponentialRampToValueAtTime(0.16,t0+0.03); g.gain.exponentialRampToValueAtTime(0.0001,t0+d);
-        o.connect(g).connect(ctx.destination); o.start(t0); o.stop(t0+d+0.05);
-      });
-    }catch(e){}
-  }
-  function finish(){
-    const pend=Object.keys(TYP).filter(hasData);
-    if(pend.length && !finish._armed){
-      finish._armed=true;
-      const dw=document.getElementById('doneWarn');
-      dw.textContent=t('Masz jeszcze niewysłane wpisy w:')+' '+nazwy(pend)+'. '+t('Kliknij „Dodaj kolejne zgłoszenie”, żeby je wysłać.')+' '+t('Kliknij „Zakończ” ponownie, żeby je porzucić.');
-      dw.style.display='block';
-      return;
-    }
-    finish._armed=false;
-    document.getElementById('doneWarn').style.display='none';
-    document.getElementById('done').classList.remove('on');
-    clearBlocks();
-    const h=document.querySelector('#mainCard .h');
-    h.style.display='block'; h.textContent=t('Dziękujemy — możesz zamknąć kartę');
-    document.querySelector('#mainCard .types').style.display='grid';
-    markPend();
-  }
+  (function start(){ if(sesjaWazna()) ladujTresc(); })();
 </script>
 </body>
 </html>
