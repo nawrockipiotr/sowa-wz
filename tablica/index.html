@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tablica WZ — logowanie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --granat:#1C2740; --niebieski:#2D5BA6; --niebieski-ciemny:#234A8C;
+    --tlo:#EEF1F6; --linia:#D5DAE2; --tekst:#1A2233; --slaby:#667085;
+    --blad:#A33A2C; --r:7px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family:'IBM Plex Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--tlo); color:var(--tekst);
+    display:flex; flex-direction:column; min-height:100vh;
+  }
+
+  /* topbar */
+  header{
+    background:var(--granat); color:#fff; flex:none;
+    display:flex; align-items:center; gap:12px; padding:11px 20px; flex-wrap:wrap;
+  }
+  .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);
+        display:grid;place-items:center;flex:none}
+  .marka{font-size:16px;font-weight:700;letter-spacing:-.2px}
+  .rozdziel{flex:1}
+  .podpis{font-size:12.5px;color:#9DB6DC}
+
+  /* karta */
+  main{flex:1;display:grid;place-items:center;padding:28px 18px}
+  .karta{
+    background:#fff; width:100%; max-width:420px; border-radius:12px;
+    box-shadow:0 10px 30px rgba(16,24,40,.10); padding:26px 26px 22px;
+  }
+  h1{font-size:19px;margin:0 0 5px;letter-spacing:-.2px}
+  .pod{font-size:13px;color:var(--slaby);line-height:1.5;margin:0 0 20px}
+  label{display:block;font-size:11.5px;font-weight:600;letter-spacing:.3px;
+        text-transform:uppercase;color:var(--slaby);margin-bottom:6px}
+
+  .pole{position:relative;display:flex;align-items:center}
+  input{
+    width:100%; font:inherit; font-size:14px; padding:10px 12px;
+    border:1px solid var(--linia); border-radius:var(--r); background:#fff; color:var(--tekst);
+  }
+  input:focus{outline:2px solid var(--niebieski);outline-offset:-1px;border-color:var(--niebieski)}
+  .sufiks{
+    position:absolute; right:12px; font-size:13.5px; color:#98A2B3; pointer-events:none;
+  }
+  #kod{letter-spacing:.32em;font-size:17px;font-weight:600;text-align:center}
+
+  button.glowny{
+    width:100%; margin-top:16px; font:inherit; font-size:14px; font-weight:600;
+    padding:11px 16px; border:none; border-radius:var(--r);
+    background:var(--niebieski); color:#fff; cursor:pointer;
+  }
+  button.glowny:hover:not(:disabled){background:var(--niebieski-ciemny)}
+  button.glowny:disabled{opacity:.55;cursor:default}
+
+  .blad{color:var(--blad);font-size:12.5px;line-height:1.45;margin-top:8px;min-height:1px}
+  .stopka-karty{margin-top:14px;font-size:12px;color:var(--slaby);display:flex;
+                justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .link{background:none;border:none;padding:0;font:inherit;font-size:12px;
+        color:var(--niebieski);cursor:pointer;text-decoration:underline}
+  .link:disabled{color:#98A2B3;cursor:default;text-decoration:none}
+  .adres{font-weight:600;color:var(--tekst);word-break:break-all}
+  .wroc{background:none;border:none;padding:0;font:inherit;font-size:12px;
+        color:var(--slaby);cursor:pointer;text-decoration:underline}
+
+  .ladowanie{display:grid;place-items:center;gap:14px;color:var(--slaby);font-size:13.5px}
+  .spinner{width:26px;height:26px;border:3px solid #D9E2F0;border-top-color:var(--niebieski);
+           border-radius:50%;animation:obr .8s linear infinite}
+  @keyframes obr{to{transform:rotate(360deg)}}
+
+  footer{flex:none;text-align:center;font-size:11.5px;color:var(--slaby);padding:14px}
+  .ukryte{display:none!important}
+
+  /* przycisk wylogowania nad ramką */
+  #wyloguj{
+    position:fixed; right:14px; bottom:14px; z-index:2147483647;
+    font:inherit; font-size:12px; font-weight:600;
+    padding:7px 13px; border:none; border-radius:999px;
+    background:rgba(28,39,64,.72); color:#fff; cursor:pointer;
+    backdrop-filter:saturate(1.2) blur(2px);
+  }
+  #wyloguj:hover{background:rgba(28,39,64,.92)}
+</style>
+</head>
+<body>
+
+<header id="topbar">
+  <div class="logo">
+    <svg viewBox="0 0 48 48" width="21" height="21" aria-label="SOWA WZ">
+      <circle cx="17.5" cy="16" r="7.4" fill="#fff"></circle>
+      <circle cx="30.5" cy="16" r="7.4" fill="#fff"></circle>
+      <circle cx="17.5" cy="16" r="3.8" fill="#1C2740"></circle>
+      <circle cx="30.5" cy="16" r="3.8" fill="#1C2740"></circle>
+      <path d="M24 18.5 L26.4 22.5 L21.6 22.5 Z" fill="#E8B33A"></path>
+      <text x="24" y="41" text-anchor="middle" font-family="IBM Plex Sans, sans-serif"
+            font-size="14" font-weight="700" fill="#fff" letter-spacing="1">WZ</text>
+    </svg>
+  </div>
+  <div class="marka">SOWA WZ</div>
+  <span class="rozdziel"></span>
+  <div class="podpis">Wydział Zarządzania UW · projekt CSRI</div>
+</header>
+
+<main id="main">
+  <!-- KROK 1 -->
+  <section class="karta" id="krok-adres">
+    <h1>Dostęp dla pracowników WZ</h1>
+    <p class="pod">Treść jest dostępna po zalogowaniu adresem wydziałowym.</p>
+
+    <label for="email">E-mail wydziałowy</label>
+    <div class="pole">
+      <input id="email" type="email" autocomplete="username" spellcheck="false"
+             inputmode="email" placeholder="jan.kowalski">
+      <span class="sufiks" id="sufiks">@wz.uw.edu.pl</span>
+    </div>
+    <div class="blad" id="blad-adres"></div>
+
+    <button class="glowny" id="btn-wyslij">Wyślij kod</button>
+  </section>
+
+  <!-- KROK 2 -->
+  <section class="karta ukryte" id="krok-kod">
+    <h1>Kod z e-maila</h1>
+    <p class="pod">Wysłaliśmy sześciocyfrowy kod na adres <span class="adres" id="adres-echo"></span>.</p>
+
+    <label for="kod">Kod z e-maila (6 cyfr)</label>
+    <input id="kod" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code"
+           spellcheck="false" placeholder="000000">
+    <div class="blad" id="blad-kod"></div>
+
+    <button class="glowny" id="btn-zaloguj">Zaloguj</button>
+
+    <div class="stopka-karty">
+      <span>Kod ważny 10 minut.</span>
+      <span>
+        <button class="link" id="btn-ponow">Wyślij kod ponownie</button>
+      </span>
+    </div>
+    <div class="stopka-karty">
+      <button class="wroc" id="btn-wroc">← inny adres</button>
+    </div>
+  </section>
+
+  <!-- ŁADOWANIE -->
+  <section class="karta ukryte" id="krok-ladowanie">
+    <div class="ladowanie">
+      <div class="spinner"></div>
+      <div id="ladowanie-txt">Wczytuję…</div>
+    </div>
+  </section>
+</main>
+
+<footer id="stopka">Tablica WZ · moduł SOWA WZ</footer>
+
+<script>
+"use strict";
+
+/* ————— konfiguracja ————— */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwdyyi8oRbz8Dq4iDgRFIPx2YajPjmgYv39tapED9s3Fl0WXPJZpymqneJjd_ing2l9_Q/exec";
+const TOKEN    = "SOWA-WZ-XgNleo1sMEYWUEOaRCRciJxU";
+const STRONA   = "tablica";
+const DOMENA   = "@wz.uw.edu.pl";
+
+/* ————— skróty ————— */
+const $ = (id) => document.getElementById(id);
+const pokaz = (el, tak) => el.classList.toggle("ukryte", !tak);
+
+const eEmail = $("email"), eKod = $("kod");
+const kAdres = $("krok-adres"), kKod = $("krok-kod"), kLad = $("krok-ladowanie");
+const bWyslij = $("btn-wyslij"), bZaloguj = $("btn-zaloguj"), bPonow = $("btn-ponow"), bWroc = $("btn-wroc");
+const errA = $("blad-adres"), errK = $("blad-kod");
+
+let adres = "";
+let odliczanie = null;
+
+/* ————— API ————— */
+async function api(body){
+  const r = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(body),
+    redirect: "follow"
+  });
+  return r.json();
+}
+
+/* ————— sesja ————— */
+function zapiszSesje(token, email){
+  sessionStorage.setItem("wz_sesja", JSON.stringify({ token, email }));
+}
+function sesjaWazna(){
+  try{
+    const s = JSON.parse(sessionStorage.getItem("wz_sesja") || "null");
+    if(!s || !s.token) return null;
+    const dane = s.token.slice(0, s.token.lastIndexOf("."));
+    const exp = parseInt(dane.split("|")[1], 10);
+    return (exp > Math.floor(Date.now()/1000)) ? s : null;
+  }catch(e){ return null; }
+}
+function wyloguj(){
+  sessionStorage.removeItem("wz_sesja");
+  location.reload();
+}
+
+/* ————— adres: doklejanie domeny ————— */
+function pelnyAdres(v){
+  const t = String(v || "").trim().toLowerCase();
+  if(!t) return "";
+  return t.includes("@") ? t : t + DOMENA;
+}
+eEmail.addEventListener("input", () => {
+  pokaz($("sufiks"), !eEmail.value.includes("@"));
+  errA.textContent = "";
+});
+eEmail.addEventListener("blur", () => {
+  if(eEmail.value.trim() && !eEmail.value.includes("@")){
+    eEmail.value = pelnyAdres(eEmail.value);
+    pokaz($("sufiks"), false);
+  }
+});
+eEmail.addEventListener("keydown", (e) => { if(e.key === "Enter") bWyslij.click(); });
+eKod.addEventListener("input", () => {
+  eKod.value = eKod.value.replace(/\D/g, "").slice(0, 6);
+  errK.textContent = "";
+});
+eKod.addEventListener("keydown", (e) => { if(e.key === "Enter") bZaloguj.click(); });
+
+/* ————— krok 1: wyślij kod ————— */
+async function wyslijKod(ponowienie){
+  const email = pelnyAdres(eEmail.value);
+  const pole = ponowienie ? errK : errA;
+  pole.textContent = "";
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    pole.textContent = "Podaj poprawny adres e-mail.";
+    return;
+  }
+  if(!email.endsWith(DOMENA)){
+    pole.textContent = "Podaj służbowy adres wydziałowy (…" + DOMENA + ").";
+    return;
+  }
+
+  const btn = ponowienie ? bPonow : bWyslij;
+  const etykieta = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = ponowienie ? "Wysyłam…" : "Wysyłam…";
+
+  try{
+    const res = await api({ akcja:"wyslij_kod", token:TOKEN, email, strona:STRONA });
+    if(!res || !res.ok){
+      pole.textContent = (res && res.error) ? res.error : "Nie udało się wysłać kodu. Spróbuj ponownie.";
+      return;
+    }
+    adres = email;
+    $("adres-echo").textContent = email;
+    pokaz(kAdres, false); pokaz(kKod, true); pokaz(kLad, false);
+    eKod.value = ""; eKod.focus();
+    startOdliczania(30);
+  }catch(e){
+    pole.textContent = "Brak połączenia z serwerem. Sprawdź sieć i spróbuj ponownie.";
+  }finally{
+    btn.disabled = false;
+    btn.textContent = ponowienie ? "Wyślij kod ponownie" : etykieta;
+    if(ponowienie) startOdliczania(30);
+  }
+}
+
+function startOdliczania(sek){
+  clearInterval(odliczanie);
+  let left = sek;
+  const odswiez = () => {
+    if(left > 0){
+      bPonow.disabled = true;
+      bPonow.textContent = "Wyślij kod ponownie (" + left + " s)";
+      left--;
+    }else{
+      clearInterval(odliczanie);
+      bPonow.disabled = false;
+      bPonow.textContent = "Wyślij kod ponownie";
+    }
+  };
+  odswiez();
+  odliczanie = setInterval(odswiez, 1000);
+}
+
+/* ————— krok 2: sprawdź kod ————— */
+async function zaloguj(){
+  errK.textContent = "";
+  const kod = eKod.value.trim();
+  if(!/^\d{6}$/.test(kod)){
+    errK.textContent = "Kod ma sześć cyfr.";
+    return;
+  }
+
+  bZaloguj.disabled = true;
+  bZaloguj.textContent = "Sprawdzam…";
+  try{
+    const res = await api({ akcja:"sprawdz_kod", email:adres, kod, strona:STRONA });
+    if(!res || !res.ok || !res.token){
+      errK.textContent = (res && res.error) ? res.error : "Kod nieprawidłowy lub przeterminowany.";
+      return;
+    }
+    zapiszSesje(res.token, res.email || adres);
+    clearInterval(odliczanie);
+    await ladujTresc();
+  }catch(e){
+    errK.textContent = "Brak połączenia z serwerem. Spróbuj ponownie.";
+  }finally{
+    bZaloguj.disabled = false;
+    bZaloguj.textContent = "Zaloguj";
+  }
+}
+
+/* ————— treść ————— */
+async function ladujTresc(){
+  const s = sesjaWazna();
+  if(!s) return pokazLogowanie();
+
+  pokaz(kAdres, false); pokaz(kKod, false); pokaz(kLad, true);
+  $("ladowanie-txt").textContent = "Wczytuję…";
+
+  let res = null;
+  try{
+    res = await api({ akcja:"tresc", strona:STRONA, token_sesji:s.token });
+  }catch(e){
+    $("ladowanie-txt").textContent = "Brak połączenia. Odśwież stronę.";
+    return;
+  }
+
+  if(!res || !res.ok || !res.html){
+    sessionStorage.removeItem("wz_sesja");
+    pokazLogowanie();
+    errA.textContent = (res && res.error) ? res.error : "Sesja wygasła — zaloguj się ponownie.";
+    return;
+  }
+
+  const f = document.createElement("iframe");
+  f.setAttribute("srcdoc", res.html);
+  f.setAttribute("title", "Tablica WZ");
+  f.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0";
+
+  const b = document.createElement("button");
+  b.id = "wyloguj";
+  b.type = "button";
+  b.textContent = "Wyloguj";
+  b.addEventListener("click", wyloguj);
+
+  document.body.replaceChildren(f, b);
+}
+
+/* ————— nawigacja ————— */
+function pokazLogowanie(){
+  pokaz(kAdres, true); pokaz(kKod, false); pokaz(kLad, false);
+  clearInterval(odliczanie);
+  setTimeout(() => eEmail.focus(), 30);
+}
+
+bWyslij.addEventListener("click", () => wyslijKod(false));
+bPonow.addEventListener("click", () => wyslijKod(true));
+bZaloguj.addEventListener("click", zaloguj);
+bWroc.addEventListener("click", () => { adres = ""; pokazLogowanie(); });
+
+/* ————— start ————— */
+(function start(){
+  if(sesjaWazna()) return ladujTresc();
+  pokazLogowanie();
+})();
+</script>
+</body>
+</html>

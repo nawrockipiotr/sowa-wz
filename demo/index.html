@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOWA WZ — demo · dostęp dla pracowników</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#2D5BA6;--blue-d:#234A8C;--ink:#1C2740;--g1:#667085;--g2:#475467;--bd:#D5DAE2;--bd2:#E2E6EC;--bg:#F0F2F5;--red:#B3261E;--r:7px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  .topbar{background:var(--ink);color:#fff;padding:13px 22px;display:flex;align-items:center;gap:12px}
+  .topbar .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);display:grid;place-items:center;flex:none}
+  .topbar b{font-weight:600;font-size:17px}
+  .topbar .sub{color:#9DB6DC;font-size:14px;margin-left:auto}
+  .center{min-height:calc(100vh - 66px);display:grid;place-items:center;padding:20px}
+  .card{background:#fff;border:1px solid var(--bd2);border-radius:10px;padding:30px 32px;width:100%;max-width:420px;box-shadow:0 1px 3px rgba(16,24,40,.07),0 8px 24px rgba(16,24,40,.06)}
+  h1{font-size:21px;margin:0 0 6px}
+  p.sub{margin:0 0 20px;color:var(--g2);font-size:15px;line-height:1.5}
+  label{display:block;font-size:15px;font-weight:500;color:var(--g2);margin:0 0 6px}
+  input{width:100%;font-family:inherit;font-size:17px;padding:11px 13px;border:1px solid var(--bd);border-radius:var(--r);outline:none}
+  input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #EEF3FB}
+  .err{display:none;color:var(--red);font-size:14px;margin-top:7px;font-weight:500}
+  .err.on{display:block}
+  .btn{width:100%;margin-top:16px;font-family:inherit;font-size:17px;font-weight:600;border-radius:var(--r);padding:13px;border:none;background:var(--blue);color:#fff;cursor:pointer;transition:background .2s}
+  .btn:hover{background:var(--blue-d)}
+  .btn:disabled{background:#9DB6DC;cursor:default}
+  .hint{font-size:13.5px;color:var(--g1);margin-top:12px;line-height:1.5}
+  .linkbtn{border:none;background:none;color:var(--blue);font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;padding:0;text-decoration:underline}
+  .linkbtn:disabled{color:var(--g1);cursor:default;text-decoration:none}
+  #step2{display:none}
+  #loader{display:none;text-align:center;color:var(--g2);font-size:15px;padding:40px 0}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="logo"><svg viewBox="0 0 48 48" width="36" height="36" aria-label="SOWA WZ"><circle cx="17.5" cy="15" r="9.2" fill="none" stroke="#FFF" stroke-width="2.6"/><circle cx="30.5" cy="15" r="9.2" fill="none" stroke="#FFF" stroke-width="2.6"/><circle cx="17.5" cy="15" r="7.6" fill="#FFF"/><circle cx="30.5" cy="15" r="7.6" fill="#FFF"/><circle cx="17.5" cy="15" r="4" fill="#1C2740"/><circle cx="30.5" cy="15" r="4" fill="#1C2740"/><circle cx="18.9" cy="13.6" r="1.4" fill="#FFF"/><circle cx="31.9" cy="13.6" r="1.4" fill="#FFF"/><path d="M24 17.5 L26.6 22 L21.4 22 Z" fill="#E8B33A"/><text x="24" y="40" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="14.5" font-weight="700" fill="#FFF" letter-spacing="1">WZ</text></svg></div>
+  <b>SOWA WZ</b>
+  <span class="sub">Wydział Zarządzania UW · projekt CSRI</span>
+</div>
+<div class="center">
+  <div class="card" id="loginCard">
+    <h1>Dostęp dla pracowników WZ</h1>
+    <p class="sub">Treść jest dostępna po zalogowaniu adresem wydziałowym.</p>
+    <div id="step1">
+      <label for="em">E-mail wydziałowy</label>
+      <div style="position:relative">
+        <input type="email" id="em" placeholder="Twój login pocztowy" autocomplete="email" oninput="emSuf()" onblur="emAuto()" style="padding-right:132px">
+        <span id="emSufik" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--g1);font-size:16px;pointer-events:none">@wz.uw.edu.pl</span>
+      </div>
+      <div class="err" id="err1"></div>
+      <button class="btn" id="btn1" onclick="wyslijKod()">Wyślij kod</button>
+    </div>
+    <div id="step2">
+      <label for="kod">Kod z e-maila (6 cyfr)</label>
+      <input type="text" id="kod" inputmode="numeric" maxlength="6" placeholder="123456" autocomplete="one-time-code">
+      <div class="err" id="err2"></div>
+      <button class="btn" id="btn2" onclick="zaloguj()">Zaloguj</button>
+      <div class="hint">Kod ważny 10 minut. <button class="linkbtn" id="resend" onclick="wyslijKod(true)" disabled>Wyślij kod ponownie</button> <span id="resendS"></span></div>
+    </div>
+  </div>
+  <div id="loader">Wczytuję…</div>
+</div>
+<script>
+  // ── konfiguracja: uzupełnić po wdrożeniu ─────────────────────────
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbwdyyi8oRbz8Dq4iDgRFIPx2YajPjmgYv39tapED9s3Fl0WXPJZpymqneJjd_ing2l9_Q/exec";   // ten sam web app co zgłoszenia
+  const TOKEN = "SOWA-WZ-XgNleo1sMEYWUEOaRCRciJxU";         // ten sam co w apce
+  const STRONA = "demo";                // wariant formularza: "formularz"
+  // ─────────────────────────────────────────────────────────────────
+  async function api(body){
+    const r = await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body),redirect:"follow"});
+    return r.json();
+  }
+  function sesjaWazna(){
+    try{
+      const s = JSON.parse(sessionStorage.getItem("wz_sesja")||"null");
+      if(!s || !s.token) return null;
+      const dane = s.token.slice(0, s.token.lastIndexOf("."));
+      const exp = parseInt(dane.split("|")[1], 10);
+      return (exp > Math.floor(Date.now()/1000)) ? s : null;
+    }catch(e){ return null; }
+  }
+  const DOMENA = "wz.uw.edu.pl";
+  function emSuf(){
+    const e=document.getElementById('em');
+    document.getElementById('emSufik').style.display = e.value.includes('@') ? 'none' : 'block';
+  }
+  function emAuto(){
+    const e=document.getElementById('em'), v=e.value.trim();
+    if(v && !v.includes('@')) e.value=v+'@'+DOMENA;
+    emSuf();
+  }
+  function err(n,msg){const e=document.getElementById('err'+n);e.textContent=msg||'';e.classList.toggle('on',!!msg);}
+  let emailVal='', timer=null;
+  async function wyslijKod(ponownie){
+    emAuto();
+    const em=document.getElementById('em').value.trim().toLowerCase();
+    if(!ponownie){
+      if(!/^[^\s@]+@[^\s@]+$/.test(em)){err(1,'Podaj poprawny adres e-mail.');return;}
+      if(!em.endsWith('@'+DOMENA)){err(1,'Podaj służbowy adres wydziałowy (…@'+DOMENA+')');return;}
+      emailVal=em;
+    }
+    err(1);err(2);
+    const b1=document.getElementById('btn1');
+    b1.disabled=true;b1.textContent='Wysyłam…';
+    try{
+      const res=await api({akcja:'wyslij_kod',token:TOKEN,email:emailVal});
+      if(res&&res.ok){
+        document.getElementById('step1').style.display='none';
+        document.getElementById('step2').style.display='block';
+        document.getElementById('kod').focus();
+        startResend();
+      }else err(ponownie?2:1,(res&&res.error)||'Nie udało się wysłać kodu — spróbuj ponownie.');
+    }catch(e){err(ponownie?2:1,'Nie udało się wysłać kodu — sprawdź połączenie.');}
+    b1.disabled=false;b1.textContent='Wyślij kod';
+  }
+  function startResend(){
+    const r=document.getElementById('resend'),s=document.getElementById('resendS');
+    r.disabled=true;let n=30;s.textContent='(za '+n+' s)';
+    clearInterval(timer);
+    timer=setInterval(()=>{n--;if(n<=0){clearInterval(timer);r.disabled=false;s.textContent='';}else s.textContent='(za '+n+' s)';},1000);
+  }
+  async function zaloguj(){
+    const kod=document.getElementById('kod').value.trim();
+    if(!/^\d{6}$/.test(kod)){err(2,'Wpisz 6-cyfrowy kod z e-maila.');return;}
+    err(2);
+    const b2=document.getElementById('btn2');
+    b2.disabled=true;b2.textContent='Sprawdzam…';
+    try{
+      const res=await api({akcja:'sprawdz_kod',email:emailVal,kod:kod});
+      if(res&&res.ok&&res.token){
+        sessionStorage.setItem('wz_sesja',JSON.stringify({token:res.token,email:res.email}));
+        await ladujTresc();
+        return;
+      }
+      err(2,(res&&res.error)||'Kod nieprawidłowy albo wygasł — wyślij nowy.');
+    }catch(e){err(2,'Nie udało się sprawdzić kodu — sprawdź połączenie.');}
+    b2.disabled=false;b2.textContent='Zaloguj';
+  }
+  async function ladujTresc(){
+    const s=sesjaWazna();
+    if(!s) return pokazLogowanie();
+    document.getElementById('loginCard').style.display='none';
+    document.getElementById('loader').style.display='block';
+    try{
+      const res=await api({akcja:'tresc',strona:STRONA,token_sesji:s.token});
+      if(!res||!res.ok||!res.html) return pokazLogowanie();
+      const f=document.createElement('iframe');
+      f.setAttribute('srcdoc',res.html);
+      f.style.cssText='position:fixed;inset:0;width:100%;height:100%;border:0';
+      document.body.replaceChildren(f);
+      const wy=document.createElement('button');wy.textContent='Wyloguj';
+      wy.style.cssText='position:fixed;bottom:12px;right:14px;z-index:2147483647;font:600 13px/1.2 \'IBM Plex Sans\',sans-serif;background:rgba(28,39,64,.72);color:#fff;border:0;border-radius:6px;padding:6px 10px;cursor:pointer;opacity:.9';
+      wy.onclick=function(){sessionStorage.removeItem('wz_sesja');location.reload();};
+      document.body.appendChild(wy);
+    }catch(e){pokazLogowanie();}
+  }
+  function pokazLogowanie(){
+    document.getElementById('loader').style.display='none';
+    document.getElementById('loginCard').style.display='block';
+    document.getElementById('step1').style.display='block';
+    document.getElementById('step2').style.display='none';
+  }
+  (function start(){ if(sesjaWazna()) ladujTresc(); })();
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOWA WZ — banery na stronę CSRI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#2D5BA6;--blue-d:#234A8C;--ink:#1C2740;--g1:#667085;--g2:#475467;--bd2:#E2E6EC;--bg2:#F6F9FD;--bg3:#EEF3FB;--amber:#8A6100;--amber-bg:#FFF3D6;--r:10px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:24px 18px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:760px){.wrap{grid-template-columns:1fr}}
+  a.baner{display:flex;gap:22px;align-items:center;background:#fff;border:1px solid var(--bd2);border-radius:var(--r);padding:26px 28px;text-decoration:none;color:var(--ink);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;min-height:200px}
+  a.baner:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(20,30,55,0.14);border-color:#9DB6DC}
+  .logo{width:92px;height:92px;border-radius:20px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);display:grid;place-items:center;flex:none}
+  .t h2{margin:0 0 6px;font-size:21px;font-weight:700;line-height:1.25}
+  .t p{margin:0 0 12px;font-size:14px;color:var(--g2);line-height:1.5;text-wrap:pretty}
+  .cta{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--blue)}
+  a.baner:hover .cta{color:var(--blue-d)}
+  .pill{display:inline-block;margin-left:10px;background:var(--amber-bg);color:var(--amber);font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;vertical-align:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="baner" id="banerFormularz" target="_blank" rel="noopener" href="https://nawrockipiotr.github.io/sowa-wz/">
+    <div class="logo"><svg viewBox="0 0 48 48" width="66" height="66" aria-hidden="true">
+      <rect x="12" y="8" width="24" height="32" rx="3" fill="#FFFFFF"/>
+      <rect x="16" y="15" width="16" height="2.6" rx="1.3" fill="#9DB6DC"/>
+      <rect x="16" y="21" width="16" height="2.6" rx="1.3" fill="#9DB6DC"/>
+      <rect x="16" y="27" width="10" height="2.6" rx="1.3" fill="#9DB6DC"/>
+      <path d="M27 33.5 L31 37.5 L38.5 28.5" stroke="#1E6B41" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg></div>
+    <div class="t">
+      <h2>Co usprawnić w pracy wydziału?<span class="pill">do 10 października</span></h2>
+      <p>Zbieramy zgłoszenia od pracowników WZ: co zabiera czas, jakich informacji brakuje, uwagi do prototypu SOWA.</p>
+      <span class="cta">Otwórz formularz zgłoszeń <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+
+  <a class="baner" id="banerSowa" target="_blank" rel="noopener" href="https://nawrockipiotr.github.io/sowa-wz/demo/">
+    <div class="logo"><svg viewBox="0 0 48 48" width="72" height="72" aria-hidden="true">
+      <circle cx="17.5" cy="15" r="9.2" fill="none" stroke="#FFFFFF" stroke-width="2.6"/>
+      <circle cx="30.5" cy="15" r="9.2" fill="none" stroke="#FFFFFF" stroke-width="2.6"/>
+      <circle cx="17.5" cy="15" r="7.6" fill="#FFFFFF"/>
+      <circle cx="30.5" cy="15" r="7.6" fill="#FFFFFF"/>
+      <circle cx="17.5" cy="15" r="4" fill="#1C2740"/>
+      <circle cx="30.5" cy="15" r="4" fill="#1C2740"/>
+      <circle cx="18.9" cy="13.6" r="1.4" fill="#FFFFFF"/>
+      <circle cx="31.9" cy="13.6" r="1.4" fill="#FFFFFF"/>
+      <path d="M24 17.5 L26.6 22 L21.4 22 Z" fill="#E8B33A"/>
+      <text x="24" y="40" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="14.5" font-weight="700" fill="#FFFFFF" letter-spacing="1">WZ</text>
+    </svg></div>
+    <div class="t">
+      <h2>SOWA WZ — wersja demonstracyjna</h2>
+      <p>System Obsady, Wsparcia i Alokacji: obsada zajęć, pensum, sale, badania i nagrody w jednym miejscu. Poklikaj po ekranach — wszystkie dane w demo są fikcyjne.</p>
+      <span class="cta">Otwórz demo SOWY <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+
+</div>
+<!-- Podmień href obu banerów: https://nawrockipiotr.github.io/sowa-wz/ i https://nawrockipiotr.github.io/sowa-wz/demo/.
+     Osadzenie w Google Sites: Wstaw → Umieść → Z adresu URL (ten plik), albo skopiuj oba <a class="baner"> do bloku HTML. -->
+</body>
+</html>

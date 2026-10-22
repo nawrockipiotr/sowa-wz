@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablica WZ — baner na stronę CSRI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#2D5BA6;--blue-d:#234A8C;--ink:#1C2740;--g2:#475467;--bd2:#E2E6EC;--amber:#8A6100;--amber-bg:#FFF3D6;--r:10px}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'IBM Plex Sans',-apple-system,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:24px 18px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:760px){.wrap{grid-template-columns:1fr}}
+  a.baner{display:flex;gap:22px;align-items:center;background:#fff;border:1px solid var(--bd2);border-radius:var(--r);padding:26px 28px;text-decoration:none;color:var(--ink);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;min-height:200px}
+  a.baner:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(20,30,55,0.14);border-color:#9DB6DC}
+  .logo{width:92px;height:92px;border-radius:20px;background:linear-gradient(135deg,#2D5BA6 0%,#1C2740 90%);display:grid;place-items:center;flex:none}
+  .t h2{margin:0 0 6px;font-size:21px;font-weight:700;line-height:1.25}
+  .t p{margin:0 0 12px;font-size:14px;color:var(--g2);line-height:1.5;text-wrap:pretty}
+  .cta{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--blue)}
+  a.baner:hover .cta{color:var(--blue-d)}
+  .pill{display:inline-block;margin-left:10px;background:var(--amber-bg);color:var(--amber);font-size:11.5px;font-weight:600;padding:2px 9px;border-radius:999px;vertical-align:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="baner" id="banerTablica" target="_blank" rel="noopener"
+     href="https://nawrockipiotr.github.io/sowa-wz/tablica/">
+    <div class="logo"><svg viewBox="0 0 48 48" width="70" height="70" aria-hidden="true">
+      <rect x="7"  y="11" width="17" height="17" rx="1.6" fill="#FDF484" transform="rotate(-3 15.5 19.5)"/>
+      <rect x="25" y="9"  width="17" height="17" rx="1.6" fill="#BFD4F1" transform="rotate(2.5 33.5 17.5)"/>
+      <rect x="11" y="27" width="17" height="17" rx="1.6" fill="#BFE2CD" transform="rotate(1.5 19.5 35.5)"/>
+      <rect x="28" y="29" width="14" height="14" rx="1.6" fill="#DCC8EA" transform="rotate(-2 35 36)"/>
+      <path d="M7 11 h17 v17" fill="none" stroke="rgba(28,39,64,.18)" stroke-width="1"/>
+    </svg></div>
+    <div class="t">
+      <h2>Tablica WZ — wersja demonstracyjna<span class="pill">prototyp</span></h2>
+      <p>Praca zespołowa na zajęciach: strefy zespołów na jednej planszy, tabele z odwołaniem do case'u, karteczki, pytania do sali i eksport do PDF. Dostęp dla pracowników WZ — logowanie adresem wydziałowym.</p>
+      <span class="cta">Otwórz Tablicę WZ <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+
+</div>
+
+<!--
+  ADRES DO PODMIANY (jeden atrybut href powyżej):
+    - wersja dla pracownikow WZ (logowanie): https://nawrockipiotr.github.io/sowa-wz/tablica/
+    - wersja otwarta (bez logowania):        https://nawrockipiotr.github.io/tablica-wz-demo/
+
+  OSADZENIE W GOOGLE SITES
+    Wstaw -> Umiesc -> Z adresu URL:
+    https://nawrockipiotr.github.io/sowa-wz/baner-tablica.html
+-->
+</body>
+</html>
